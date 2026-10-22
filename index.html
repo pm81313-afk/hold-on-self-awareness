@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <script>(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","","bdd54d089c8e-index.html-124")</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隨時自覺：卡關三步調整法｜Hold On 備考陪伴與學測分科倒數工作站</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Rounded Traditional Chinese & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            rounded: ['"M PLUS Rounded 1c"', '"Noto Sans TC"', 'sans-serif'],
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              brown: '#5C3824',
+              brownLight: '#7D4E35',
+              cream: '#FFFDF9',
+              sky: '#D8EEFE',
+              pink: '#FAD8E6',
+              yellow: '#FFE46B',
+              coral: '#F26B5E',
+              mint: '#88E0C0',
+              purple: '#C8A8F0'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --brown-stroke: #5C3824;
+    }
+    body {
+      font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif;
+      background: linear-gradient(135deg, #CBE8FF 0%, #E5E4FF 48%, #FAD4E8 100%);
+      background-attachment: fixed;
+      color: #4A2C1B;
+      overflow-x: hidden;
+    }
+    /* Title white-outlined sticker style matching the IP image */
+    .sticker-title {
+      color: #6B3F26;
+      text-shadow:
+        -3px -3px 0 #FFFFFF,
+         0px -3px 0 #FFFFFF,
+         3px -3px 0 #FFFFFF,
+        -3px  0px 0 #FFFFFF,
+         3px  0px 0 #FFFFFF,
+        -3px  3px 0 #FFFFFF,
+         0px  3px 0 #FFFFFF,
+         3px  3px 0 #FFFFFF,
+         0px  6px 14px rgba(92, 56, 36, 0.18);
+    }
+    /* Soft glass card with subtle warm border */
+    .ip-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 12px 30px -6px rgba(92, 56, 36, 0.12), 0 4px 12px rgba(255, 255, 255, 0.6) inset;
+    }
+    .ip-card-active {
+      border: 3px solid #5C3824;
+      box-shadow: 0 14px 32px -6px rgba(92, 56, 36, 0.22);
+    }
+    /* Cartoon Button Press Effect */
+    .cartoon-btn {
+      border: 3px solid #5C3824;
+      box-shadow: 0 4px 0 #5C3824;
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cartoon-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #5C3824;
+    }
+    .cartoon-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #5C3824;
+    }
+    /* Floating & Rotating Animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes floatBalloons {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinReverseSlow {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+    @keyframes waveHand {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-14deg); }
+      75% { transform: rotate(10deg); }
+    }
+    .animate-float {
+      animation: floatSlow 3.8s ease-in-out infinite;
+    }
+    .animate-balloons {
+      animation: floatBalloons 3.2s ease-in-out infinite;
+      transform-origin: 215px 190px;
+    }
+    .animate-spin-slow {
+      animation: spinSlow 28s linear infinite;
+    }
+    .animate-spin-reverse {
+      animation: spinReverseSlow 22s linear infinite;
+    }
+    .animate-wave {
+      animation: waveHand 2s ease-in-out infinite;
+      transform-origin: 105px 185px;
+    }
+    /* Breathing Circle Animation */
+    .breath-circle {
+      transition: transform 1s ease-in-out, background-color 1s ease;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.4);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #B89987;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-brand-yellow selection:text-brand-brown">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/75 border-b-2 border-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-2xl bg-brand-yellow border-2 border-brand-brown flex items-center justify-center shadow-[0_3px_0_#5C3824] group-hover:scale-105 transition">
+          <span class="text-xl">🎈</span>
+        </div>
+        <div>
+          <span class="font-black text-lg sm:text-xl text-brand-brown tracking-tight block leading-none">Hold On! 隨時自覺</span>
+          <span class="text-xs font-bold text-brand-brownLight">卡關三步調整法・大考陪伴站</span>
+        </div>
+      </a>
+
+      <!-- Quick Navigation Pills -->
+      <nav class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1">
+        <button onclick="scrollToSection('countdown-section')" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-sky-100/90 hover:bg-sky-200 text-brand-brown border border-brand-brown/20 transition whitespace-nowrap">
+          <i class="fa-solid fa-calendar-check mr-1 text-sky-600"></i>學測/分科倒數
+        </button>
+        <button onclick="scrollToSection('three-steps-section')" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-amber-100/90 hover:bg-amber-200 text-brand-brown border border-brand-brown/20 transition whitespace-nowrap">
+          <i class="fa-solid fa-lightbulb mr-1 text-amber-500"></i>卡關三步調整
+        </button>
+        <button onclick="scrollToSection('pomodoro-section')" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-rose-100/90 hover:bg-rose-200 text-brand-brown border border-brand-brown/20 transition whitespace-nowrap">
+          <i class="fa-solid fa-hourglass-half mr-1 text-rose-500"></i>專注番茄鐘
+        </button>
+        <button onclick="scrollToSection('journal-section')" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-emerald-100/90 hover:bg-emerald-200 text-brand-brown border border-brand-brown/20 transition whitespace-nowrap">
+          <i class="fa-solid fa-book-open mr-1 text-emerald-600"></i>破關日誌
+        </button>
+      </nav>
+
+      <!-- Emergency Hold On Button & Sound Toggle -->
+      <div class="flex items-center gap-2">
+        <!-- Cloud Account / Login Button -->
+        <button id="userAccountBtn" onclick="openAccountModal()" class="px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 border-2 border-brand-brown flex items-center gap-1.5 text-xs font-extrabold text-brand-brown shadow-[0_2px_0_#5C3824] transition" title="帳號設定與雲端備份">
+          <i class="fa-brands fa-google text-sky-600"></i>
+          <span id="navUserName">載入帳號中...</span>
+          <span id="cloudSyncBadge" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        </button>
+        <button id="soundToggleBtn" onclick="toggleSound()" class="w-9 h-9 rounded-full bg-white border-2 border-brand-brown flex items-center justify-center text-brand-brown hover:bg-amber-50 transition" title="切換音效提示">
+          <i id="soundIcon" class="fa-solid fa-volume-high text-sm"></i>
+        </button>
+        <button onclick="triggerEmergencyHoldOn()" class="cartoon-btn bg-brand-coral text-white font-black text-xs sm:text-sm px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-pause animate-pulse"></i>
+          <span>我卡關了！先暫停</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-10">
+
+    <!-- ==========================================
+         USER PERSONALIZED BANNER (個人化雲端學習檔案橫幅)
+         ========================================== -->
+    <section class="ip-card rounded-3xl p-4 sm:p-5 border-2 border-brand-brown flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-gradient-to-r from-white/90 via-amber-50/80 to-sky-50/90">
+      <div class="flex items-center gap-3.5">
+        <div id="bannerAvatar" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-yellow border-2 border-brand-brown flex items-center justify-center text-2xl font-black text-brand-brown shadow-[0_3px_0_#5C3824] shrink-0">
+          🎈
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="bannerGreeting" class="text-base sm:text-lg font-black text-brand-brown">歡迎回來，自覺夥伴！</span>
+            <span id="bannerTargetTag" class="px-2.5 py-0.5 rounded-full bg-sky-100 border border-sky-300 text-sky-900 text-xs font-extrabold">
+              🎯 目標志願：點擊右側設定專屬目標
+            </span>
+          </div>
+          <p id="bannerMotto" class="text-xs sm:text-sm font-bold text-brand-brownLight mt-0.5">
+            「每一次察覺與暫停，都是為了走得更遠！」（你的所有進度、待辦與日誌皆已即時綁定個人帳號儲存於雲端後台）
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 self-end md:self-center shrink-0">
+        <button onclick="openAccountModal()" class="cartoon-btn px-3.5 py-2 rounded-xl bg-white hover:bg-amber-50 text-brand-brown text-xs font-black flex items-center gap-1.5">
+          <i class="fa-solid fa-user-pen text-amber-600"></i>
+          <span>個人檔案 / Google 帳號綁定</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 1: 學測 & 分科測驗 雙重即時倒數計時器
+         ========================================== -->
+    <section id="countdown-section" class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-full bg-brand-brown text-white font-extrabold text-xs tracking-wider uppercase">EXAM COUNTDOWN</span>
+          <h2 class="text-xl sm:text-2xl font-black text-brand-brown">大考即時倒數・穩住節奏不慌張</h2>
+        </div>
+        <div class="flex items-center gap-2 text-xs sm:text-sm font-bold text-brand-brownLight">
+          <span id="currentDateDisplay" class="bg-white/70 px-3 py-1 rounded-full border border-white">載入現在時間中...</span>
+          <button onclick="openCustomDateModal()" class="underline hover:text-brand-brown flex items-center gap-1">
+            <i class="fa-solid fa-sliders"></i>自訂考試日期
+          </button>
+        </div>
+      </div>
+
+      <!-- Dual Exam Countdown Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        
+        <!-- 學測倒數 Card (GSAT) -->
+        <div class="ip-card rounded-3xl p-5 sm:p-6 relative overflow-hidden group">
+          <div class="absolute -right-8 -top-8 w-32 h-32 bg-sky-200/50 rounded-full blur-xl pointer-events-none"></div>
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-100 border border-sky-300 text-sky-800 text-xs font-extrabold mb-1">
+                <span>🎯 116學年度 大學學科能力測驗</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-black text-brand-brown flex items-center gap-2">
+                <span>學測倒數</span>
+                <span id="gsatStatusBadge" class="text-xs px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-bold">衝刺準備中</span>
+              </h3>
+              <p class="text-xs sm:text-sm font-bold text-brand-brownLight mt-0.5">
+                目標時間：<span id="gsatTargetText">2027年1月22日 (五) 08:30</span>（1/22 ~ 1/24）
+              </p>
+            </div>
+            <button onclick="openScheduleModal('gsat')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-sky-50 text-brand-brown border-2 border-brand-brown text-xs font-extrabold shadow-[0_2px_0_#5C3824] transition shrink-0">
+              <i class="fa-regular fa-calendar-days mr-1"></i>重要日程
+            </button>
+          </div>
+
+          <!-- Digital Countdown Boxes -->
+          <div class="grid grid-cols-4 gap-2.5 sm:gap-3 my-3">
+            <div class="bg-gradient-to-b from-sky-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="gsatDays" class="text-2xl sm:text-4xl font-black text-brand-brown tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">天 (Days)</div>
+            </div>
+            <div class="bg-gradient-to-b from-sky-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="gsatHours" class="text-2xl sm:text-4xl font-black text-brand-brown tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">時 (Hrs)</div>
+            </div>
+            <div class="bg-gradient-to-b from-sky-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="gsatMins" class="text-2xl sm:text-4xl font-black text-brand-brown tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">分 (Min)</div>
+            </div>
+            <div class="bg-gradient-to-b from-sky-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="gsatSecs" class="text-2xl sm:text-4xl font-black text-sky-600 tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">秒 (Sec)</div>
+            </div>
+          </div>
+
+          <!-- Progress & Subjects Tag -->
+          <div class="mt-4 pt-3 border-t border-brand-brown/10 flex flex-wrap items-center justify-between gap-2 text-xs font-bold">
+            <div class="flex flex-wrap items-center gap-1">
+              <span class="text-brand-brownLight">考科：</span>
+              <span class="px-2 py-0.5 rounded-md bg-sky-100 text-brand-brown">國文</span>
+              <span class="px-2 py-0.5 rounded-md bg-sky-100 text-brand-brown">英文</span>
+              <span class="px-2 py-0.5 rounded-md bg-sky-100 text-brand-brown">數A/數B</span>
+              <span class="px-2 py-0.5 rounded-md bg-sky-100 text-brand-brown">社會</span>
+              <span class="px-2 py-0.5 rounded-md bg-sky-100 text-brand-brown">自然</span>
+            </div>
+            <span id="gsatEncouragement" class="text-sky-800 font-extrabold">💡 每天穩紮穩打，覺察狀態比盲目刷題更重要！</span>
+          </div>
+        </div>
+
+        <!-- 分科測驗倒數 Card (AST) -->
+        <div class="ip-card rounded-3xl p-5 sm:p-6 relative overflow-hidden group">
+          <div class="absolute -right-8 -top-8 w-32 h-32 bg-pink-200/50 rounded-full blur-xl pointer-events-none"></div>
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-pink-100 border border-pink-300 text-pink-800 text-xs font-extrabold mb-1">
+                <span>🚀 116學年度 大學分科測驗</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-black text-brand-brown flex items-center gap-2">
+                <span>分科測驗倒數</span>
+                <span id="astStatusBadge" class="text-xs px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-300 font-bold">長線蓄力中</span>
+              </h3>
+              <p class="text-xs sm:text-sm font-bold text-brand-brownLight mt-0.5">
+                目標時間：<span id="astTargetText">2027年7月10日 (六) 08:40</span>（7/10 ~ 7/11）
+              </p>
+            </div>
+            <button onclick="openScheduleModal('ast')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-pink-50 text-brand-brown border-2 border-brand-brown text-xs font-extrabold shadow-[0_2px_0_#5C3824] transition shrink-0">
+              <i class="fa-regular fa-calendar-days mr-1"></i>重要日程
+            </button>
+          </div>
+
+          <!-- Digital Countdown Boxes -->
+          <div class="grid grid-cols-4 gap-2.5 sm:gap-3 my-3">
+            <div class="bg-gradient-to-b from-pink-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="astDays" class="text-2xl sm:text-4xl font-black text-brand-brown tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">天 (Days)</div>
+            </div>
+            <div class="bg-gradient-to-b from-pink-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="astHours" class="text-2xl sm:text-4xl font-black text-brand-brown tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">時 (Hrs)</div>
+            </div>
+            <div class="bg-gradient-to-b from-pink-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="astMins" class="text-2xl sm:text-4xl font-black text-brand-brown tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">分 (Min)</div>
+            </div>
+            <div class="bg-gradient-to-b from-pink-50 to-white rounded-2xl p-3 text-center border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+              <div id="astSecs" class="text-2xl sm:text-4xl font-black text-rose-500 tabular-nums">--</div>
+              <div class="text-xs font-extrabold text-brand-brownLight mt-0.5">秒 (Sec)</div>
+            </div>
+          </div>
+
+          <!-- Progress & Subjects Tag -->
+          <div class="mt-4 pt-3 border-t border-brand-brown/10 flex flex-wrap items-center justify-between gap-2 text-xs font-bold">
+            <div class="flex flex-wrap items-center gap-1">
+              <span class="text-brand-brownLight">考科：</span>
+              <span class="px-2 py-0.5 rounded-md bg-pink-100 text-brand-brown">數甲/數乙</span>
+              <span class="px-2 py-0.5 rounded-md bg-pink-100 text-brand-brown">物/化/生</span>
+              <span class="px-2 py-0.5 rounded-md bg-pink-100 text-brand-brown">歷/地/公</span>
+            </div>
+            <span id="astEncouragement" class="text-pink-800 font-extrabold">🎈 加深加廣別怕卡關，隨時三步調整再出發！</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: HERO IP 互動視覺區 (隨時自覺：卡關三步調整法)
+         ========================================== -->
+    <section id="hero" class="ip-card rounded-[2.2rem] p-6 sm:p-10 relative overflow-hidden">
+      <!-- Subtle Pastel Gradient Background inside Hero matching reference image -->
+      <div class="absolute inset-0 bg-gradient-to-br from-[#C6E6FF]/60 via-[#EBE6FF]/40 to-[#FCD1E6]/60 pointer-events-none"></div>
+
+      <!-- Main Sticker Title -->
+      <div class="relative z-10 text-center mb-6 sm:mb-8">
+        <h1 class="sticker-title text-3xl sm:text-5xl md:text-6xl font-black tracking-wide leading-tight">
+          隨時自覺：卡關三步調整法
+        </h1>
+        <p class="mt-2 text-sm sm:text-base font-bold text-brand-brownLight max-w-2xl mx-auto">
+          讀書解題卡住、心浮氣躁嗎？點擊下方三個圓圈或氣球，讓「自覺夥伴」陪你走過 <span class="text-brand-brown underline decoration-wavy decoration-amber-400">1.察覺 ➔ 2.暫停 ➔ 3.調整</span>！
+        </p>
+      </div>
+
+      <!-- Interactive IP Diagram Layout (Faithful to User's Uploaded Image!) -->
+      <div class="relative z-10 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 items-center gap-6 py-2">
+        
+        <!-- Left Column: Step 1 (察覺) & Step 2 (暫停) Badges -->
+        <div class="md:col-span-4 flex flex-col gap-6 items-center md:items-end order-2 md:order-1">
+          
+          <!-- Step 1 Circle Card: 1. 察覺 -->
+          <button onclick="selectStep(1)" id="badge-step-1" class="group relative w-64 sm:w-68 bg-white rounded-full p-5 border-4 border-brand-brown shadow-[0_8px_0_#5C3824] hover:scale-105 transition-all duration-300 flex flex-col items-center text-center cursor-pointer">
+            <div class="absolute -top-2 -right-2 bg-amber-400 text-brand-brown text-xs font-black px-2.5 py-0.5 rounded-full border-2 border-brand-brown">STEP 1</div>
+            <!-- Cute Glowing Lightbulb SVG -->
+            <div class="w-16 h-16 mb-1 flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-16 h-16 group-hover:scale-110 transition">
+                <!-- Glow Rays -->
+                <g stroke="#F7B844" stroke-width="4.5" stroke-linecap="round">
+                  <line x1="50" y1="6" x2="50" y2="15"></line>
+                  <line x1="18" y1="20" x2="25" y2="27"></line>
+                  <line x1="82" y1="20" x2="75" y2="27"></line>
+                  <line x1="8" y1="48" x2="17" y2="48"></line>
+                  <line x1="92" y1="48" x2="83" y2="48"></line>
+                </g>
+                <!-- Bulb Body -->
+                <path d="M30 46 C30 28, 70 28, 70 46 C70 57, 60 63, 59 72 L41 72 C40 63, 30 57, 30 46 Z" fill="#FFE066" stroke="#5C3824" stroke-width="4.5" stroke-linejoin="round"></path>
+                <!-- Cute Face inside Bulb -->
+                <circle cx="43" cy="48" r="3" fill="#5C3824"></circle>
+                <circle cx="57" cy="48" r="3" fill="#5C3824"></circle>
+                <circle cx="39" cy="52" r="3" fill="#F28482" opacity="0.7"></circle>
+                <circle cx="61" cy="52" r="3" fill="#F28482" opacity="0.7"></circle>
+                <path d="M46 51 Q50 55 54 51" fill="none" stroke="#5C3824" stroke-width="3" stroke-linecap="round"></path>
+                <!-- Bulb Base -->
+                <rect x="41" y="72" width="18" height="7" rx="3" fill="#D9D9D9" stroke="#5C3824" stroke-width="4"></rect>
+                <rect x="43" y="79" width="14" height="6" rx="3" fill="#B5B5B5" stroke="#5C3824" stroke-width="4"></rect>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-black text-brand-brown">1. 察覺</h3>
+            <p class="text-sm font-extrabold text-brand-brownLight leading-snug mt-0.5">敏銳察覺<br>自我狀態</p>
+          </button>
+
+          <!-- Step 2 Circle Card: 2. 暫停 -->
+          <button onclick="selectStep(2)" id="badge-step-2" class="group relative w-64 sm:w-68 bg-white rounded-full p-5 border-4 border-brand-brown/30 hover:border-brand-brown shadow-lg hover:shadow-[0_8px_0_#5C3824] hover:scale-105 transition-all duration-300 flex flex-col items-center text-center cursor-pointer">
+            <div class="absolute -top-2 -right-2 bg-rose-400 text-white text-xs font-black px-2.5 py-0.5 rounded-full border-2 border-brand-brown">STEP 2</div>
+            <!-- Pause Button + Hourglass SVG -->
+            <div class="w-20 h-16 mb-1 flex items-center justify-center">
+              <svg viewBox="0 0 120 90" class="w-20 h-16 group-hover:scale-110 transition">
+                <!-- Red Pause Circle -->
+                <circle cx="38" cy="46" r="26" fill="#EA6A60" stroke="#5C3824" stroke-width="4.5"></circle>
+                <rect x="29" y="33" width="7" height="26" rx="3" fill="#FFFFFF" stroke="#5C3824" stroke-width="3.5"></rect>
+                <rect x="40" y="33" width="7" height="26" rx="3" fill="#FFFFFF" stroke="#5C3824" stroke-width="3.5"></rect>
+                <!-- Hourglass -->
+                <rect x="72" y="18" width="32" height="6" rx="3" fill="#9C633E" stroke="#5C3824" stroke-width="3.5"></rect>
+                <rect x="72" y="68" width="32" height="6" rx="3" fill="#9C633E" stroke="#5C3824" stroke-width="3.5"></rect>
+                <path d="M76 24 C76 40, 88 44, 88 46 C88 48, 76 52, 76 68 L100 68 C100 52, 88 48, 88 46 C88 44, 100 40, 100 24 Z" fill="#E6F4FA" stroke="#5C3824" stroke-width="3.5" stroke-linejoin="round"></path>
+                <!-- Sand -->
+                <path d="M80 33 L96 33 L88 44 Z" fill="#F3A847"></path>
+                <path d="M79 66 L97 66 L88 55 Z" fill="#F3A847"></path>
+                <line x1="88" y1="45" x2="88" y2="56" stroke="#F3A847" stroke-width="2.5" stroke-dasharray="2 2"></line>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-black text-brand-brown">2. 暫停</h3>
+            <p class="text-sm font-extrabold text-brand-brownLight leading-snug mt-0.5">卡關時停下腳步</p>
+          </button>
+
+        </div>
+
+        <!-- Center Column: Cute Q-Version IP Character SVG with Gears, Glowing Orbit & Balloons -->
+        <div class="md:col-span-4 flex flex-col items-center justify-center order-1 md:order-2 relative">
+          
+          <!-- Dynamic Speech Bubble from Mascot -->
+          <div id="mascotSpeechBubble" class="relative mb-3 bg-white px-4 py-2.5 rounded-2xl border-3 border-brand-brown shadow-[0_4px_0_#5C3824] text-center max-w-xs transition-all">
+            <p id="mascotSpeechText" class="text-xs sm:text-sm font-extrabold text-brand-brown">
+              「嗨！我是你的自覺夥伴 🎈 卡關不是失敗，而是大腦提醒我們該『察覺、暫停、調整』囉！」
+            </p>
+            <div class="w-3 h-3 bg-white border-r-2 border-b-2 border-brand-brown rotate-45 absolute -bottom-2 left-1/2 -translate-x-1/2"></div>
+          </div>
+
+          <!-- Faithful Custom Vector Art of the Uploaded IP Character -->
+          <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
+            <svg viewBox="0 0 320 320" class="w-full h-full overflow-visible">
+              <defs>
+                <!-- Glowing Orbit Ring Gradient -->
+                <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8CE0FF"></stop>
+                  <stop offset="50%" stop-color="#FFF3B0"></stop>
+                  <stop offset="100%" stop-color="#FFADC6"></stop>
+                </linearGradient>
+                <!-- Plaid Shirt Pattern -->
+                <pattern id="plaidPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <rect width="20" height="20" fill="#EBF5FF"></rect>
+                  <rect width="10" height="20" fill="#8AB8E6" opacity="0.55"></rect>
+                  <rect width="20" height="10" fill="#5B8EC2" opacity="0.45"></rect>
+                </pattern>
+              </defs>
+
+              <!-- Outer Glowing Orbit Circle & Sparkle Nodes -->
+              <circle cx="160" cy="160" r="138" fill="none" stroke="url(#orbitGrad)" stroke-width="6" opacity="0.85"></circle>
+              <circle cx="65" cy="60" r="7" fill="#FFFFFF" stroke="#FFB5A7" stroke-width="4"></circle>
+              <circle cx="245" cy="52" r="7" fill="#FFFFFF" stroke="#FFD166" stroke-width="4"></circle>
+              <circle cx="235" cy="268" r="7" fill="#FFFFFF" stroke="#8CE0FF" stroke-width="4"></circle>
+
+              <!-- Background Spinning Gears (representing thinking & adjustment) -->
+              <g class="animate-spin-slow" style="transform-origin: 185px 115px;" opacity="0.32">
+                <circle cx="185" cy="115" r="36" fill="none" stroke="#8D99AE" stroke-width="12"></circle>
+                <circle cx="185" cy="115" r="44" fill="none" stroke="#8D99AE" stroke-width="10" stroke-dasharray="12 11"></circle>
+              </g>
+              <g class="animate-spin-reverse" style="transform-origin: 115px 190px;" opacity="0.28">
+                <circle cx="115" cy="190" r="28" fill="none" stroke="#8D99AE" stroke-width="10"></circle>
+                <circle cx="115" cy="190" r="35" fill="none" stroke="#8D99AE" stroke-width="8" stroke-dasharray="10 10"></circle>
+              </g>
+
+              <!-- IP Character Group -->
+              <g class="animate-float">
+                <!-- Shadow under feet -->
+                <ellipse cx="155" cy="292" rx="46" ry="9" fill="#5C3824" opacity="0.18"></ellipse>
+
+                <!-- Balloon Strings & 4 Smiling Pastel Balloons (Interactive!) -->
+                <g class="animate-balloons cursor-pointer" onclick="popBalloonQuote()">
+                  <!-- Strings -->
+                  <path d="M208 215 Q222 175 215 125" fill="none" stroke="#5C3824" stroke-width="2.5"></path>
+                  <path d="M208 215 Q230 180 245 135" fill="none" stroke="#5C3824" stroke-width="2.5"></path>
+                  <path d="M208 215 Q215 190 220 155" fill="none" stroke="#5C3824" stroke-width="2.5"></path>
+                  <path d="M208 215 Q235 195 256 168" fill="none" stroke="#5C3824" stroke-width="2.5"></path>
+
+                  <!-- Yellow Balloon (Top) -->
+                  <ellipse cx="215" cy="108" rx="20" ry="23" fill="#FFE169" stroke="#5C3824" stroke-width="3.5"></ellipse>
+                  <ellipse cx="208" cy="98" rx="4" ry="7" fill="#FFFFFF" opacity="0.7" transform="rotate(-20 208 98)"></ellipse>
+                  <!-- Pink Balloon (MiddleRight) -->
+                  <ellipse cx="246" cy="122" rx="19" ry="22" fill="#F7A8B8" stroke="#5C3824" stroke-width="3.5"></ellipse>
+                  <ellipse cx="240" cy="113" rx="3.5" ry="6" fill="#FFFFFF" opacity="0.7" transform="rotate(-15 240 113)"></ellipse>
+                  <!-- Purple Balloon (BottomRight) -->
+                  <ellipse cx="256" cy="158" rx="19" ry="21" fill="#C8A4F0" stroke="#5C3824" stroke-width="3.5"></ellipse>
+                  <ellipse cx="262" cy="150" rx="3.5" ry="6" fill="#FFFFFF" opacity="0.6" transform="rotate(15 262 150)"></ellipse>
+                  <!-- Mint Green Balloon with Cute Face (Front) -->
+                  <ellipse cx="222" cy="146" rx="21" ry="24" fill="#8CE0C0" stroke="#5C3824" stroke-width="3.5"></ellipse>
+                  <ellipse cx="213" cy="136" rx="4" ry="7" fill="#FFFFFF" opacity="0.75" transform="rotate(-20 213 136)"></ellipse>
+                  <circle cx="216" cy="147" r="2.3" fill="#5C3824"></circle>
+                  <circle cx="229" cy="147" r="2.3" fill="#5C3824"></circle>
+                  <path d="M220 150 Q222.5 153 225 150" fill="none" stroke="#5C3824" stroke-width="2.2" stroke-linecap="round"></path>
+                </g>
+
+                <!-- Shoes -->
+                <ellipse cx="132" cy="284" rx="17" ry="9" fill="#63412C" stroke="#422614" stroke-width="3.5"></ellipse>
+                <ellipse cx="176" cy="284" rx="17" ry="9" fill="#63412C" stroke="#422614" stroke-width="3.5"></ellipse>
+
+                <!-- Brown Pants -->
+                <path d="M122 242 L186 242 L188 280 L163 280 L158 258 L150 258 L145 280 L120 280 Z" fill="#8C6D58" stroke="#422614" stroke-width="3.8" stroke-linejoin="round"></path>
+
+                <!-- Waving Right Hand (Left side on screen) -->
+                <g class="animate-wave">
+                  <path d="M120 198 L92 178 C88 175 84 180 87 185 L95 194" fill="#FFD6BA" stroke="#422614" stroke-width="3.5" stroke-linecap="round"></path>
+                  <circle cx="91" cy="182" r="10" fill="#FFD6BA" stroke="#422614" stroke-width="3.5"></circle>
+                  <!-- Cute sleeve -->
+                  <path d="M124 195 L104 185 L99 198 L120 210 Z" fill="url(#plaidPattern)" stroke="#422614" stroke-width="3.5" stroke-linejoin="round"></path>
+                </g>
+
+                <!-- Left Arm holding Balloon Strings (Right side on screen) -->
+                <path d="M185 196 L206 206 L198 220 L180 212 Z" fill="url(#plaidPattern)" stroke="#422614" stroke-width="3.5" stroke-linejoin="round"></path>
+                <circle cx="206" cy="214" r="9.5" fill="#FFD6BA" stroke="#422614" stroke-width="3.5"></circle>
+
+                <!-- Torso: Blue & White Plaid Shirt -->
+                <path d="M120 192 C118 212, 119 232, 120 245 L188 245 C189 232, 190 212, 188 192 Z" fill="url(#plaidPattern)" stroke="#422614" stroke-width="3.8" stroke-linejoin="round"></path>
+                <!-- Shirt Collar & Center Placket -->
+                <line x1="154" y1="194" x2="154" y2="245" stroke="#422614" stroke-width="3.2"></line>
+                <path d="M135 190 L154 202 L144 208 L128 195 Z" fill="#FFFFFF" stroke="#422614" stroke-width="3.2" stroke-linejoin="round"></path>
+                <path d="M173 190 L154 202 L164 208 L180 195 Z" fill="#FFFFFF" stroke="#422614" stroke-width="3.2" stroke-linejoin="round"></path>
+
+                <!-- Ears -->
+                <circle cx="94" cy="144" r="13" fill="#FFD6BA" stroke="#422614" stroke-width="3.8"></circle>
+                <path d="M92 140 Q96 144 92 148" fill="none" stroke="#D99B78" stroke-width="2.5" stroke-linecap="round"></path>
+                <circle cx="214" cy="144" r="13" fill="#FFD6BA" stroke="#422614" stroke-width="3.8"></circle>
+                <path d="M216 140 Q212 144 216 148" fill="none" stroke="#D99B78" stroke-width="2.5" stroke-linecap="round"></path>
+
+                <!-- Big Cute Bald Head -->
+                <rect x="97" y="74" width="114" height="120" rx="55" fill="#FFE0C8" stroke="#422614" stroke-width="4"></rect>
+                <!-- Head Shine (Signature Cute Highlight!) -->
+                <ellipse cx="122" cy="92" rx="11" ry="6" fill="#FFFFFF" opacity="0.85" transform="rotate(-25 122 92)"></ellipse>
+                <circle cx="109" cy="103" r="3.5" fill="#FFFFFF" opacity="0.85"></circle>
+
+                <!-- Eyebrows -->
+                <path id="mascotBrowL" d="M115 112 Q127 105 138 111" fill="none" stroke="#5C3824" stroke-width="4.5" stroke-linecap="round"></path>
+                <path id="mascotBrowR" d="M170 111 Q181 105 193 112" fill="none" stroke="#5C3824" stroke-width="4.5" stroke-linecap="round"></path>
+
+                <!-- Big Sparkling Brown Eyes -->
+                <g id="mascotEyes">
+                  <circle cx="128" cy="136" r="13.5" fill="#4A2C1B"></circle>
+                  <circle cx="123" cy="131" r="4.8" fill="#FFFFFF"></circle>
+                  <circle cx="133" cy="141" r="2.2" fill="#FFFFFF"></circle>
+
+                  <circle cx="180" cy="136" r="13.5" fill="#4A2C1B"></circle>
+                  <circle cx="175" cy="131" r="4.8" fill="#FFFFFF"></circle>
+                  <circle cx="185" cy="141" r="2.2" fill="#FFFFFF"></circle>
+                </g>
+
+                <!-- Rosy Cheeks -->
+                <ellipse cx="110" cy="154" rx="9" ry="5.5" fill="#F4978E" opacity="0.55"></ellipse>
+                <ellipse cx="198" cy="154" rx="9" ry="5.5" fill="#F4978E" opacity="0.55"></ellipse>
+
+                <!-- Cute Nose -->
+                <path d="M151 145 Q154 149 157 145" fill="none" stroke="#C68B6B" stroke-width="3" stroke-linecap="round"></path>
+
+                <!-- Bold Black-Rimmed Glasses -->
+                <g>
+                  <rect x="103" y="118" width="46" height="34" rx="10" fill="#FFFFFF" fill-opacity="0.15" stroke="#2B211E" stroke-width="5.5"></rect>
+                  <rect x="159" y="118" width="46" height="34" rx="10" fill="#FFFFFF" fill-opacity="0.15" stroke="#2B211E" stroke-width="5.5"></rect>
+                  <path d="M149 132 Q154 129 159 132" fill="none" stroke="#2B211E" stroke-width="5.5"></path>
+                  <line x1="97" y1="132" x2="103" y2="132" stroke="#2B211E" stroke-width="5"></line>
+                  <line x1="205" y1="132" x2="211" y2="132" stroke="#2B211E" stroke-width="5"></line>
+                </g>
+
+                <!-- Happy Open Smile -->
+                <g id="mascotMouth">
+                  <path d="M136 160 Q154 163 172 160 C172 178, 136 178, 136 160 Z" fill="#A8383B" stroke="#422614" stroke-width="3.5" stroke-linejoin="round"></path>
+                  <!-- Teeth -->
+                  <path d="M139 161 L169 161 L168 166 L140 166 Z" fill="#FFFFFF"></path>
+                  <!-- Tongue -->
+                  <path d="M143 171 Q154 166 165 171 C161 176, 147 176, 143 171 Z" fill="#F28482"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <button onclick="popBalloonQuote()" class="mt-1 text-xs font-extrabold text-brand-brown bg-white/80 hover:bg-white px-3.5 py-1.5 rounded-full border-2 border-brand-brown shadow-sm transition">
+            🎈 點擊氣球抽一句「自覺應援金句」
+          </button>
+        </div>
+
+        <!-- Right Column: Step 3 (調整) Badge + Quick Action Summary -->
+        <div class="md:col-span-4 flex flex-col gap-6 items-center md:items-start order-3">
+          
+          <!-- Step 3 Circle Card: 3. 調整 -->
+          <button onclick="selectStep(3)" id="badge-step-3" class="group relative w-64 sm:w-68 bg-white rounded-full p-5 border-4 border-brand-brown/30 hover:border-brand-brown shadow-lg hover:shadow-[0_8px_0_#5C3824] hover:scale-105 transition-all duration-300 flex flex-col items-center text-center cursor-pointer">
+            <div class="absolute -top-2 -right-2 bg-emerald-400 text-brand-brown text-xs font-black px-2.5 py-0.5 rounded-full border-2 border-brand-brown">STEP 3</div>
+            <!-- Crossed Wrench & Screwdriver + Arrow SVG -->
+            <div class="w-20 h-16 mb-1 flex items-center justify-center">
+              <svg viewBox="0 0 110 90" class="w-20 h-16 group-hover:scale-110 transition">
+                <!-- Screwdriver -->
+                <g transform="rotate(-42 52 46)">
+                  <rect x="48" y="14" width="8" height="36" fill="#D9D9D9" stroke="#5C3824" stroke-width="3.5"></rect>
+                  <rect x="43" y="48" width="18" height="28" rx="6" fill="#EA6A60" stroke="#5C3824" stroke-width="3.5"></rect>
+                </g>
+                <!-- Wrench -->
+                <g transform="rotate(42 52 46)">
+                  <rect x="46" y="24" width="12" height="46" rx="4" fill="#F3B844" stroke="#5C3824" stroke-width="3.5"></rect>
+                  <circle cx="52" cy="20" r="11" fill="#D9D9D9" stroke="#5C3824" stroke-width="3.5"></circle>
+                  <rect x="48" y="8" width="8" height="10" fill="#FFFFFF"></rect>
+                </g>
+                <!-- Forward Arrow -->
+                <path d="M78 36 L92 36 L92 30 L103 41 L92 52 L92 46 L78 46 Z" fill="#FFD166" stroke="#5C3824" stroke-width="3.2" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-black text-brand-brown">3. 調整</h3>
+            <p class="text-sm font-extrabold text-brand-brownLight leading-snug mt-0.5">靈活調整<br>思維方向</p>
+          </button>
+
+          <!-- Today's Self-Awareness Stats Mini Card -->
+          <div class="w-64 sm:w-68 bg-white/85 rounded-3xl p-4 border-2 border-brand-brown/20 shadow-sm text-center">
+            <div class="text-xs font-extrabold text-brand-brownLight mb-2">📊 今日自覺練習統計</div>
+            <div class="grid grid-cols-3 gap-2">
+              <div class="bg-amber-50 rounded-xl p-2 border border-amber-200">
+                <div id="statAwarenessCount" class="text-lg font-black text-brand-brown">0</div>
+                <div class="text-[11px] font-bold text-brand-brownLight">次察覺</div>
+              </div>
+              <div class="bg-rose-50 rounded-xl p-2 border border-rose-200">
+                <div id="statPauseCount" class="text-lg font-black text-brand-brown">0</div>
+                <div class="text-[11px] font-bold text-brand-brownLight">次暫停</div>
+              </div>
+              <div class="bg-emerald-50 rounded-xl p-2 border border-emerald-200">
+                <div id="statAdjustCount" class="text-lg font-black text-brand-brown">0</div>
+                <div class="text-[11px] font-bold text-brand-brownLight">次調整</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: 卡關三步調整法 互動工作坊 (Interactive 3-Step Tool)
+         ========================================== -->
+    <section id="three-steps-section" class="space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="px-3 py-1 rounded-full bg-amber-400 text-brand-brown font-extrabold text-xs border border-brand-brown">INTERACTIVE WORKSTATION</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-brown mt-1">卡關三步調整法・互動實踐區</h2>
+        </div>
+        <!-- Step Switcher Tabs -->
+        <div class="flex bg-white/80 p-1.5 rounded-2xl border-2 border-brand-brown shadow-[0_3px_0_#5C3824]">
+          <button onclick="selectStep(1)" id="tab-btn-1" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition bg-brand-yellow text-brand-brown">
+            💡 1. 察覺狀態
+          </button>
+          <button onclick="selectStep(2)" id="tab-btn-2" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition text-brand-brownLight hover:text-brand-brown">
+            ⏸️ 2. 暫停腳步
+          </button>
+          <button onclick="selectStep(3)" id="tab-btn-3" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition text-brand-brownLight hover:text-brand-brown">
+            🛠️ 3. 調整思維
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 1 PANEL: 1. 察覺 (敏銳察覺自我狀態) -->
+      <div id="panel-step-1" class="ip-card rounded-3xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-brand-brown/10 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 border-2 border-brand-brown flex items-center justify-center text-2xl">💡</div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-black text-brand-brown">第一步：察覺 — 敏銳察覺自我狀態</h3>
+              <p class="text-xs sm:text-sm font-bold text-brand-brownLight">當你發現自己讀不下、解不出題或心情煩躁時，先幫現在的自己做個溫柔掃描。</p>
+            </div>
+          </div>
+          <span class="text-xs font-extrabold bg-amber-100 text-amber-900 px-3 py-1.5 rounded-full border border-amber-300 self-start md:self-center">
+            覺察是改變的起點 ✨
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Left: Stuck Scenario Selector -->
+          <div class="lg:col-span-7 space-y-4">
+            <label class="block text-sm sm:text-base font-black text-brand-brown">
+              1️⃣ 你現在遇到哪一種「卡關情境」？（點選最符合的一項）
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="stuckScenarioGrid">
+              <button onclick="pickScenario('hard_problem')" data-scenario="hard_problem" class="scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown bg-amber-50 shadow-[0_3px_0_#5C3824] transition flex items-start gap-3">
+                <span class="text-2xl">🤯</span>
+                <div>
+                  <div class="font-black text-sm text-brand-brown">題目卡死解不出來</div>
+                  <div class="text-xs font-bold text-brand-brownLight mt-0.5">盯著同一題超過10分鐘，越看越慌張</div>
+                </div>
+              </button>
+              <button onclick="pickScenario('distracted')" data-scenario="distracted" class="scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown/20 bg-white hover:border-brand-brown transition flex items-start gap-3">
+                <span class="text-2xl">📱</span>
+                <div>
+                  <div class="font-black text-sm text-brand-brown">注意力渙散想滑手機</div>
+                  <div class="text-xs font-bold text-brand-brownLight mt-0.5">字看過去卻沒進腦袋，一直想分心</div>
+                </div>
+              </button>
+              <button onclick="pickScenario('schedule_anxiety')" data-scenario="schedule_anxiety" class="scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown/20 bg-white hover:border-brand-brown transition flex items-start gap-3">
+                <span class="text-2xl">⏰</span>
+                <div>
+                  <div class="font-black text-sm text-brand-brown">看著倒數天數焦慮恐慌</div>
+                  <div class="text-xs font-bold text-brand-brownLight mt-0.5">覺得書讀不完、進度落後別人一大截</div>
+                </div>
+              </button>
+              <button onclick="pickScenario('exam_frustration')" data-scenario="exam_frustration" class="scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown/20 bg-white hover:border-brand-brown transition flex items-start gap-3">
+                <span class="text-2xl">📉</span>
+                <div>
+                  <div class="font-black text-sm text-brand-brown">模考/練習錯太多受挫</div>
+                  <div class="text-xs font-bold text-brand-brownLight mt-0.5">懷疑自己努力沒用，陷入自我否定</div>
+                </div>
+              </button>
+              <button onclick="pickScenario('low_energy')" data-scenario="low_energy" class="scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown/20 bg-white hover:border-brand-brown transition flex items-start gap-3">
+                <span class="text-2xl">🔋</span>
+                <div>
+                  <div class="font-black text-sm text-brand-brown">身心疲憊沒電想睡</div>
+                  <div class="text-xs font-bold text-brand-brownLight mt-0.5">腦袋轉不動、眼皮沉重、提不起勁</div>
+                </div>
+              </button>
+              <button onclick="pickScenario('perfectionism')" data-scenario="perfectionism" class="scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown/20 bg-white hover:border-brand-brown transition flex items-start gap-3">
+                <span class="text-2xl">🌀</span>
+                <div>
+                  <div class="font-black text-sm text-brand-brown">完美主義遲遲不敢開始</div>
+                  <div class="text-xs font-bold text-brand-brownLight mt-0.5">怕計畫不夠完美，結果一直在拖延</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Energy Slider & Body Signals -->
+          <div class="lg:col-span-5 bg-white/80 rounded-2xl p-5 border-2 border-brand-brown/20 flex flex-col justify-between space-y-5">
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label for="energySlider" class="text-sm font-black text-brand-brown">2️⃣ 現在的心智電量有多少？</label>
+                  <span id="energyValueDisplay" class="px-2.5 py-0.5 rounded-full bg-amber-100 border border-brand-brown text-xs font-black text-brand-brown">60% 尚可</span>
+                </div>
+                <input id="energySlider" type="range" min="10" max="100" step="5" value="60" oninput="updateEnergyDisplay(this.value)" class="w-full accent-amber-500 cursor-pointer h-2.5 bg-gray-200 rounded-lg">
+              </div>
+
+              <div>
+                <label class="block text-sm font-black text-brand-brown mb-2">3️⃣ 身體與情緒出現哪些訊號？（可複選）</label>
+                <div class="flex flex-wrap gap-2" id="signalTags">
+                  <button onclick="toggleSignal(this)" class="signal-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-brand-brown/25 bg-white hover:bg-amber-50 transition">😣 肩頸緊繃</button>
+                  <button onclick="toggleSignal(this)" class="signal-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-brand-brown/25 bg-white hover:bg-amber-50 transition">😤 呼吸變淺變快</button>
+                  <button onclick="toggleSignal(this)" class="signal-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-brand-brown/25 bg-white hover:bg-amber-50 transition">🔁 鑽牛角尖</button>
+                  <button onclick="toggleSignal(this)" class="signal-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-brand-brown/25 bg-white hover:bg-amber-50 transition">🥱 一直打呵欠</button>
+                  <button onclick="toggleSignal(this)" class="signal-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-brand-brown/25 bg-white hover:bg-amber-50 transition">💢 莫名煩躁生氣</button>
+                  <button onclick="toggleSignal(this)" class="signal-chip px-3 py-1.5 rounded-full text-xs font-bold border-2 border-brand-brown/25 bg-white hover:bg-amber-50 transition">😶 腦袋一片空白</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Awareness Result & Next Step CTA -->
+            <div class="bg-amber-50/90 rounded-2xl p-4 border-2 border-amber-300 space-y-3">
+              <div class="text-xs font-extrabold text-brand-brown" id="awarenessSummaryText">
+                💡 察覺完成！你發現自己正在經歷「題目卡死解不出來」，看見這個狀態就是拿回主導權的第一步。
+              </div>
+              <button onclick="completeStep1AndGoStep2()" class="cartoon-btn w-full py-2.5 rounded-xl bg-brand-yellow text-brand-brown font-black text-sm flex items-center justify-center gap-2">
+                <span>完成察覺！進入 2. 暫停 (Hold On)</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 PANEL: 2. 暫停 (卡關時停下腳步 - Hold On Breathing & Hourglass) -->
+      <div id="panel-step-2" class="ip-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-brand-brown/10 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-rose-100 border-2 border-brand-brown flex items-center justify-center text-2xl">⏸️</div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-black text-brand-brown">第二步：暫停 (Hold On!) — 卡關時停下腳步</h3>
+              <p class="text-xs sm:text-sm font-bold text-brand-brownLight">硬撐只會消耗更多意志力！給自己 60 秒～3 分鐘的「沙漏暫停時間」，跟著氣球深呼吸。</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="setPauseDuration(60)" class="pause-dur-btn px-3 py-1 rounded-full text-xs font-extrabold border-2 border-brand-brown bg-rose-200 text-brand-brown">60秒微暫停</button>
+            <button onclick="setPauseDuration(180)" class="pause-dur-btn px-3 py-1 rounded-full text-xs font-extrabold border-2 border-brand-brown/25 bg-white text-brand-brown">3分鐘沙漏放空</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- Breathing & Hourglass Visual Center -->
+          <div class="lg:col-span-7 flex flex-col items-center justify-center bg-gradient-to-b from-sky-50/90 to-rose-50/90 rounded-3xl p-6 border-2 border-brand-brown/20 relative overflow-hidden">
+            
+            <!-- Animated Breathing Circle -->
+            <div class="relative w-52 h-52 sm:w-60 sm:h-60 flex items-center justify-center my-2">
+              <div id="breathOuterRing" class="breath-circle absolute inset-0 rounded-full bg-rose-200/50 border-4 border-rose-300 scale-90"></div>
+              <div id="breathInnerCircle" class="breath-circle relative z-10 w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-white border-4 border-brand-brown shadow-lg flex flex-col items-center justify-center text-center p-3">
+                <div class="text-3xl mb-1" id="pauseVisualEmoji">⏳</div>
+                <div id="pauseTimerDisplay" class="text-2xl sm:text-3xl font-black text-brand-brown tabular-nums">01:00</div>
+                <div id="breathInstruction" class="text-xs font-extrabold text-rose-600 mt-1">點擊下方開始暫停</div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+              <button id="pauseStartBtn" onclick="togglePauseTimer()" class="cartoon-btn px-6 py-2.5 rounded-full bg-brand-coral text-white font-black text-sm flex items-center gap-2">
+                <i class="fa-solid fa-play" id="pausePlayIcon"></i>
+                <span id="pauseStartBtnText">開始 Hold On 呼吸暫停</span>
+              </button>
+              <button onclick="resetPauseTimer()" class="px-4 py-2.5 rounded-full bg-white hover:bg-gray-100 text-brand-brown border-2 border-brand-brown font-extrabold text-xs transition">
+                <i class="fa-solid fa-rotate-left mr-1"></i>重置沙漏
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Why Pause Works & Quick Micro-Break Checklist -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-white/90 rounded-2xl p-5 border-2 border-brand-brown/20 space-y-3">
+              <h4 class="font-black text-base text-brand-brown flex items-center gap-2">
+                <span>⏳ 暫停時可以做的 4 件小事</span>
+              </h4>
+              <div class="space-y-2 text-xs sm:text-sm font-bold text-brand-brownLight">
+                <label class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-rose-50/60 cursor-pointer">
+                  <input type="checkbox" class="w-4 h-4 accent-rose-500 rounded">
+                  <span>把筆放下，視線離開桌面，看遠方 20 秒</span>
+                </label>
+                <label class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-rose-50/60 cursor-pointer">
+                  <input type="checkbox" class="w-4 h-4 accent-rose-500 rounded">
+                  <span>喝兩口溫開水，讓大腦補充水分與氧氣</span>
+                </label>
+                <label class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-rose-50/60 cursor-pointer">
+                  <input type="checkbox" class="w-4 h-4 accent-rose-500 rounded">
+                  <span>聳肩再重重放下 3 次，釋放肩膀壓力</span>
+                </label>
+                <label class="flex items-center gap-2.5 p-2 rounded-xl hover:bg-rose-50/60 cursor-pointer">
+                  <input type="checkbox" class="w-4 h-4 accent-rose-500 rounded">
+                  <span>對自己說：「卡住很正常，我只是先按暫停鍵。」</span>
+                </label>
+              </div>
+            </div>
+
+            <button onclick="completeStep2AndGoStep3()" class="cartoon-btn w-full py-3 rounded-2xl bg-brand-mint text-brand-brown font-black text-sm flex items-center justify-center gap-2">
+              <span>心情平復了！進入 3. 調整思維方向</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 PANEL: 3. 調整 (靈活調整思維方向 - Reframing & Action Plan) -->
+      <div id="panel-step-3" class="ip-card rounded-3xl p-6 sm:p-8 space-y-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-brand-brown/10 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 border-2 border-brand-brown flex items-center justify-center text-2xl">🛠️</div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-black text-brand-brown">第三步：調整 — 靈活調整思維方向</h3>
+              <p class="text-xs sm:text-sm font-bold text-brand-brownLight">山不轉路轉！根據你剛才察覺的卡關情境，我們換個角度想，並挑選一個「5分鐘微行動」破關。</p>
+            </div>
+          </div>
+          <button onclick="shuffleReframeCard()" class="cartoon-btn px-3.5 py-1.5 rounded-full bg-amber-200 text-brand-brown text-xs font-black flex items-center gap-1.5 self-start md:self-center">
+            <i class="fa-solid fa-shuffle"></i>換一張轉念處方
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Left: Cognitive Reframing Comparison (Old Thought vs Adjusted Thought) -->
+          <div class="lg:col-span-6 space-y-4">
+            <div class="bg-rose-50/90 rounded-2xl p-4 border-2 border-rose-200">
+              <div class="text-xs font-black text-rose-700 mb-1">❌ 卡關時的慣性思維（原本的想法）</div>
+              <p id="reframeOldThought" class="text-sm sm:text-base font-extrabold text-brand-brown">
+                「這題想了這麼久還不會，我一定完蛋了，學測/分科考出來怎麼辦...」
+              </p>
+            </div>
+
+            <div class="flex justify-center -my-2 relative z-10">
+              <div class="w-9 h-9 rounded-full bg-brand-yellow border-2 border-brand-brown flex items-center justify-center shadow-sm">
+                <i class="fa-solid fa-arrow-down text-brand-brown"></i>
+              </div>
+            </div>
+
+            <div class="bg-emerald-50/95 rounded-2xl p-5 border-3 border-brand-brown shadow-[0_4px_0_#5C3824]">
+              <div class="text-xs font-black text-emerald-800 mb-1">✅ 靈活調整後的新思維（轉念方向）</div>
+              <p id="reframeNewThought" class="text-base sm:text-lg font-black text-brand-brown leading-relaxed">
+                「現在卡住代表我抓到一個考前盲點！先做記號跳過或看詳解拆解步驟，在考前弄懂它就是賺到分數！」
+              </p>
+            </div>
+          </div>
+
+          <!-- Right: Actionable Micro-Step & Save to Log -->
+          <div class="lg:col-span-6 bg-white/85 rounded-2xl p-5 border-2 border-brand-brown/20 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <label class="block text-sm font-black text-brand-brown">
+                🛠️ 選擇一個現在馬上能做的「最小破關行動」：
+              </label>
+              <div id="actionSuggestionList" class="space-y-2">
+                <!-- Dynamically populated by JS based on scenario -->
+              </div>
+
+              <div class="pt-2">
+                <label for="customNoteInput" class="block text-xs font-extrabold text-brand-brownLight mb-1">
+                  ✍️ 或者寫下你給自己的調整行動 / 鼓勵話語：
+                </label>
+                <input id="customNoteInput" type="text" placeholder="例如：先去背10個英文單字換個腦袋，15分鐘後再回來看詳解！" class="w-full px-3.5 py-2 rounded-xl border-2 border-brand-brown/30 focus:border-brand-brown focus:outline-none text-xs sm:text-sm font-bold text-brand-brown bg-white">
+              </div>
+            </div>
+
+            <button onclick="saveAdjustmentToJournal()" class="cartoon-btn w-full py-3 rounded-2xl bg-brand-yellow text-brand-brown font-black text-sm flex items-center justify-center gap-2">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>完成三步調整！儲存到「自覺破關日誌」</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: Hold On 專注番茄鐘 & 備考任務清單
+         ========================================== -->
+    <section id="pomodoro-section" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Pomodoro Focus Timer (7 cols) -->
+      <div class="lg:col-span-7 ip-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div class="flex items-center gap-2.5">
+              <span class="w-10 h-10 rounded-2xl bg-rose-100 border-2 border-brand-brown flex items-center justify-center text-xl">🍅</span>
+              <div>
+                <h2 class="text-xl sm:text-2xl font-black text-brand-brown">Hold On 專注番茄鐘</h2>
+                <p class="text-xs font-bold text-brand-brownLight">結合「隨時自覺」的備考計時器，專注時卡關可隨時切換調整</p>
+              </div>
+            </div>
+            <!-- Mode Presets -->
+            <div class="flex items-center gap-1.5 bg-white/80 p-1 rounded-xl border border-brand-brown/20">
+              <button onclick="setPomodoroMode(25, '標準專注 25m')" class="pomo-mode-btn px-2.5 py-1 rounded-lg text-xs font-extrabold bg-brand-brown text-white">25分專注</button>
+              <button onclick="setPomodoroMode(50, '深度刷題 50m')" class="pomo-mode-btn px-2.5 py-1 rounded-lg text-xs font-extrabold text-brand-brown hover:bg-amber-100">50分模考</button>
+              <button onclick="setPomodoroMode(5, '放鬆休息 5m')" class="pomo-mode-btn px-2.5 py-1 rounded-lg text-xs font-extrabold text-brand-brown hover:bg-emerald-100">5分休息</button>
+            </div>
+          </div>
+
+          <!-- Big Timer Display -->
+          <div class="my-4 py-6 px-4 rounded-3xl bg-gradient-to-br from-white via-amber-50/40 to-sky-50/60 border-3 border-brand-brown shadow-inner text-center relative">
+            <div id="pomoModeLabel" class="inline-block px-3 py-0.5 rounded-full bg-amber-100 text-brand-brown text-xs font-black border border-brand-brown/20 mb-2">
+              🎯 標準專注 25m
+            </div>
+            <div id="pomoTimeDisplay" class="text-5xl sm:text-7xl font-black text-brand-brown tabular-nums tracking-tight">
+              25:00
+            </div>
+            <p id="pomoCurrentTaskLabel" class="text-xs sm:text-sm font-bold text-brand-brownLight mt-2">
+              當前專注科目：<span class="text-brand-brown underline">從右側清單點選任務，或直接開始專注</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Timer Action Buttons -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <div class="flex items-center gap-2.5">
+            <button id="pomoStartBtn" onclick="togglePomodoro()" class="cartoon-btn px-6 py-2.5 rounded-2xl bg-brand-yellow text-brand-brown font-black text-sm flex items-center gap-2">
+              <i id="pomoPlayIcon" class="fa-solid fa-play"></i>
+              <span id="pomoStartText">開始專注</span>
+            </button>
+            <button onclick="resetPomodoro()" class="px-4 py-2.5 rounded-2xl bg-white hover:bg-gray-100 text-brand-brown border-2 border-brand-brown font-extrabold text-xs transition">
+              重置
+            </button>
+          </div>
+
+          <!-- Stuck Mid-Pomodoro Button -->
+          <button onclick="triggerEmergencyHoldOn()" class="px-4 py-2.5 rounded-2xl bg-rose-100 hover:bg-rose-200 text-rose-900 border-2 border-brand-brown font-black text-xs flex items-center gap-1.5 transition">
+            <span>💡 專注中卡關？啟動三步調整</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Study Task To-Do List (5 cols) -->
+      <div class="lg:col-span-5 ip-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">📝</span>
+              <h3 class="text-lg sm:text-xl font-black text-brand-brown">今日備考小目標</h3>
+            </div>
+            <span id="taskCounterBadge" class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+              已完成 0/0
+            </span>
+          </div>
+
+          <!-- Add Task Form -->
+          <form onsubmit="addStudyTask(event)" class="flex gap-2 mb-4">
+            <input id="newTaskInput" type="text" placeholder="輸入小目標（如：寫一回學測英文歷屆）" class="flex-grow px-3.5 py-2 rounded-xl border-2 border-brand-brown/40 focus:border-brand-brown focus:outline-none text-xs sm:text-sm font-bold text-brand-brown bg-white" required="">
+            <button type="submit" class="cartoon-btn px-4 py-2 rounded-xl bg-brand-mint text-brand-brown font-black text-xs shrink-0">
+              ＋新增
+            </button>
+          </form>
+
+          <!-- Task List Container -->
+          <div id="studyTaskList" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-brand-brown/10 text-xs font-bold text-brand-brownLight flex items-center justify-between">
+          <span>💡 小秘訣：把大目標拆成 25 分鐘能完成的小任務最不易卡關！</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: 自覺破關日誌 (Self-Awareness Log)
+         ========================================== -->
+    <section id="journal-section" class="ip-card rounded-3xl p-6 sm:p-8 space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-10 h-10 rounded-2xl bg-emerald-100 border-2 border-brand-brown flex items-center justify-center text-xl">📖</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-brand-brown">自覺破關日誌・每一次卡關都是成長養分</h2>
+            <p class="text-xs font-bold text-brand-brownLight">自動即時同步至你的專屬雲端後台，考前翻閱會發現自己已經跨越了這麼多難關！</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="copyJournalSummary()" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-amber-50 text-brand-brown border-2 border-brand-brown text-xs font-extrabold shadow-[0_2px_0_#5C3824] transition">
+            <i class="fa-regular fa-copy mr-1"></i>複製日誌紀錄
+          </button>
+          <button onclick="clearJournalLogs()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-rose-50 text-rose-700 border border-rose-300 text-xs font-bold transition">
+            清空紀錄
+          </button>
+        </div>
+      </div>
+
+      <div id="journalLogContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-10 border-t-2 border-white/80 bg-white/50 backdrop-blur-sm py-6 text-center text-xs sm:text-sm font-bold text-brand-brownLight">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span>🎈 <strong>隨時自覺：卡關三步調整法</strong>（1.察覺 ➔ 2.暫停 ➔ 3.調整）</span>
+      </div>
+      <div>
+        陪伴每一位準備學測與分科測驗的你，穩住心態、靈活破關！
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL 1: 學測 / 分科測驗 重要試務日程表
+       ========================================== -->
+  <div id="scheduleModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="ip-card rounded-3xl max-w-lg w-full p-6 border-4 border-brand-brown shadow-2xl space-y-4 animate-float" style="animation-duration: 0s;">
+      <div class="flex items-center justify-between border-b-2 border-brand-brown/10 pb-3">
+        <h3 id="scheduleModalTitle" class="text-xl font-black text-brand-brown">📅 116學年度重要試務日程</h3>
+        <button onclick="closeScheduleModal()" class="w-8 h-8 rounded-full bg-rose-100 text-brand-brown font-black hover:bg-rose-200">✕</button>
+      </div>
+      <div id="scheduleModalBody" class="space-y-2.5 text-xs sm:text-sm font-bold text-brand-brown max-h-80 overflow-y-auto pr-1">
+        <!-- Populated by JS -->
+      </div>
+      <div class="text-[11px] font-bold text-brand-brownLight bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+        ※ 實際日期與應考規範請以大考中心 (CEEC) 正式公告之 116 學年度考試簡章為準。
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2: 自訂倒數目標日期設定
+       ========================================== -->
+  <div id="customDateModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="ip-card rounded-3xl max-w-md w-full p-6 border-4 border-brand-brown shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-brand-brown/10 pb-3">
+        <h3 class="text-lg sm:text-xl font-black text-brand-brown">⚙️ 自訂學測 / 分科倒數時間</h3>
+        <button onclick="closeCustomDateModal()" class="w-8 h-8 rounded-full bg-rose-100 text-brand-brown font-black hover:bg-rose-200">✕</button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm font-bold text-brand-brown">
+        <div>
+          <label class="block mb-1">🎯 學測目標日期與時間（預設：116學測 2027/01/22 08:30）</label>
+          <input id="customGsatInput" type="datetime-local" class="w-full px-3 py-2 rounded-xl border-2 border-brand-brown/40 bg-white">
+        </div>
+        <div>
+          <label class="block mb-1">🚀 分科測驗目標日期與時間（預設：116分科 2027/07/10 08:40）</label>
+          <input id="customAstInput" type="datetime-local" class="w-full px-3 py-2 rounded-xl border-2 border-brand-brown/40 bg-white">
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="resetDefaultExamDates()" class="px-3.5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-brand-brown text-xs font-extrabold">
+          還原預設 116 大考日期
+        </button>
+        <button onclick="saveCustomExamDates()" class="cartoon-btn px-5 py-2 rounded-xl bg-brand-yellow text-brand-brown text-xs font-black">
+          儲存設定
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 3: Google 帳號登入與個人專屬雲端檔案設定
+       ========================================== -->
+  <div id="accountModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="ip-card rounded-3xl max-w-lg w-full p-6 border-4 border-brand-brown shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b-2 border-brand-brown/10 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">☁️</span>
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-brand-brown">個人帳號與雲端後台管理</h3>
+            <p class="text-[11px] font-bold text-brand-brownLight">不同使用者登入後擁有獨立的後台資料空間</p>
+          </div>
+        </div>
+        <button onclick="closeAccountModal()" class="w-8 h-8 rounded-full bg-rose-100 text-brand-brown font-black hover:bg-rose-200">✕</button>
+      </div>
+
+      <!-- Google Account Sign-In / Status Card -->
+      <div class="bg-sky-50/90 rounded-2xl p-4 border-2 border-sky-200 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-full bg-white border-2 border-brand-brown flex items-center justify-center text-lg">
+              <i class="fa-brands fa-google text-sky-600"></i>
+            </div>
+            <div>
+              <div id="modalAuthStatusTitle" class="text-xs sm:text-sm font-black text-brand-brown">雲端專屬連線狀態：已啟用</div>
+              <div class="text-[11px] font-bold text-brand-brownLight break-all">
+                專屬識別碼 (UID)：<span id="modalUserUid" class="font-mono text-brand-brown select-all">載入中...</span>
+              </div>
+            </div>
+          </div>
+          <button id="googleSignInBtn" onclick="loginWithGoogleAccount()" class="cartoon-btn px-3.5 py-2 rounded-xl bg-white hover:bg-sky-50 text-brand-brown text-xs font-black flex items-center gap-1.5">
+            <i class="fa-brands fa-google text-rose-500"></i>
+            <span id="googleSignInBtnText">使用 Google 帳號登入</span>
+          </button>
+        </div>
+        <p id="googleAuthHint" class="text-[11px] font-bold text-sky-900 bg-white/80 p-2.5 rounded-xl border border-sky-200">
+          💡 系統已為你建立安全的雲端後台資料庫！若在預覽環境中無法彈出 Google 視窗，你也可以直接在下方綁定你的 Google 信箱與考生檔案，所有紀錄皆會自動同步至你的專屬雲端空間。
+        </p>
+      </div>
+
+      <!-- Personal Profile Form (Stored in Backend per User) -->
+      <form onsubmit="saveUserProfileForm(event)" class="space-y-3 text-xs sm:text-sm font-bold text-brand-brown">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block mb-1">👤 考生暱稱 / 姓名</label>
+            <input id="profileNameInput" type="text" placeholder="例如：小宇 / 準大學生" class="w-full px-3 py-2 rounded-xl border-2 border-brand-brown/40 bg-white focus:border-brand-brown focus:outline-none" required="">
+          </div>
+          <div>
+            <label class="block mb-1">📧 Google 帳號信箱 (選填)</label>
+            <input id="profileEmailInput" type="email" placeholder="example@gmail.com" class="w-full px-3 py-2 rounded-xl border-2 border-brand-brown/40 bg-white focus:border-brand-brown focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block mb-1">🎯 我的目標學校與科系（第一志願）</label>
+          <input id="profileSchoolInput" type="text" placeholder="例如：國立臺灣大學 資訊工程學系" class="w-full px-3 py-2 rounded-xl border-2 border-brand-brown/40 bg-white focus:border-brand-brown focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block mb-1">💬 給自己的備考座右銘 / 提醒</label>
+          <input id="profileMottoInput" type="text" placeholder="例如：隨時自覺：1.察覺 ➔ 2.暫停 ➔ 3.調整，穩住就能贏！" class="w-full px-3 py-2 rounded-xl border-2 border-brand-brown/40 bg-white focus:border-brand-brown focus:outline-none">
+        </div>
+
+        <div class="pt-2 flex flex-wrap items-center justify-between gap-2 border-t border-brand-brown/10">
+          <span id="lastSyncedTimeText" class="text-[11px] font-bold text-emerald-700">
+            <i class="fa-solid fa-cloud-arrow-up mr-1"></i>雲端即時自動儲存中
+          </span>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="closeAccountModal()" class="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-brand-brown text-xs font-extrabold">
+              關閉
+            </button>
+            <button type="submit" class="cartoon-btn px-5 py-2 rounded-xl bg-brand-yellow text-brand-brown text-xs font-black">
+              💾 儲存個人檔案至後台
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div id="toastBox" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-brand-brown text-white px-4 py-3 rounded-2xl shadow-xl border-2 border-white flex items-center gap-2.5 text-xs sm:text-sm font-bold">
+      <span id="toastEmoji" class="text-lg">🎈</span>
+      <span id="toastMessage">通知訊息</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       APPLICATION JAVASCRIPT & CLOUD BACKEND (FIRESTORE)
+       ========================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    /*************************************************************
+     * 1. STATE, DEFAULT DATA & CLOUD BACKEND INITIALIZATION
+     *************************************************************/
+    const DEFAULT_GSAT_DATE = '2027-01-22T08:30:00';
+    const DEFAULT_AST_DATE  = '2027-07-10T08:40:00';
+
+    const DEFAULT_TASKS = [
+      { id: 1, text: '複習學測英文核心單字 30 個 + 大聲朗讀例句', done: false },
+      { id: 2, text: '練習數學歷屆考題 10 題（卡關超過8分鐘啟動三步調整）', done: false },
+      { id: 3, text: '整理自然/分科選修錯題筆記 1 頁', done: true }
+    ];
+
+    // User's isolated in-memory state (synced with Cloud Firestore per userId)
+    let userProfile = {
+      displayName: '自覺考生',
+      email: '',
+      targetSchool: '邁向理想第一志願',
+      motto: '「每一次察覺與暫停，都是為了走得更遠！」'
+    };
+    let gsatTargetDate = DEFAULT_GSAT_DATE;
+    let astTargetDate  = DEFAULT_AST_DATE;
+    let stats          = { awareness: 0, pause: 0, adjust: 0 };
+    let studyTasks     = [...DEFAULT_TASKS];
+    let journalLogs    = [];
+    let soundEnabled   = true;
+
+    // Firebase instances
+    let app = null;
+    let db = null;
+    let auth = null;
+    let currentUser = null;
+    let unsubscribeWorkspace = null;
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'holdon-self-awareness-app';
+
+    const LOCAL_STORAGE_KEY = 'holdon_self_awareness_workspace_v1';
+
+    function loadFromLocalStorage() {
+      try {
+        const rawLocal = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (!rawLocal) return false;
+        const data = JSON.parse(rawLocal);
+        if (data.profile) userProfile = { ...userProfile, ...data.profile };
+        if (data.gsatTargetDate) gsatTargetDate = data.gsatTargetDate;
+        if (data.astTargetDate) astTargetDate = data.astTargetDate;
+        if (data.stats) stats = data.stats;
+        if (Array.isArray(data.studyTasks)) studyTasks = data.studyTasks;
+        if (Array.isArray(data.journalLogs)) journalLogs = data.journalLogs;
+        renderUserProfileBanner();
+        updateExamDateTextUI();
+        updateExamCountdowns();
+        renderStatsUI();
+        renderStudyTasks();
+        renderJournalLogs();
+        return true;
+      } catch (e) {
+        console.warn('Local storage read error:', e);
+        return false;
+      }
+    }
+
+    function saveToLocalStorage() {
+      try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({
+          profile: userProfile,
+          gsatTargetDate,
+          astTargetDate,
+          stats,
+          studyTasks,
+          journalLogs,
+          updatedAt: new Date().toISOString()
+        }));
+      } catch (e) {
+        console.warn('Local storage write error:', e);
+      }
+    }
+
+    // Initialize Firebase Cloud Backend
+    async function initCloudBackend() {
+      loadFromLocalStorage();
+      try {
+        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+          const firebaseConfig = JSON.parse(__firebase_config);
+          app = initializeApp(firebaseConfig);
+          db = getFirestore(app);
+          auth = getAuth(app);
+
+          // RULE 3: Authenticate FIRST before any Firestore queries
+          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+            await signInWithCustomToken(auth, __initial_auth_token);
+          } else {
+            await signInAnonymously(auth);
+          }
+
+          onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            if (user) {
+              // If user signed in via Google Popup and has displayName/email, merge it
+              if (user.displayName && userProfile.displayName === '自覺考生') {
+                userProfile.displayName = user.displayName;
+              }
+              if (user.email && !userProfile.email) {
+                userProfile.email = user.email;
+              }
+              updateAuthUI();
+              subscribeToUserBackendData(user.uid);
+            }
+          });
+        } else {
+          updateAuthUI(false);
+        }
+      } catch (err) {
+        console.error('Cloud backend init error:', err);
+        updateAuthUI(false);
+      }
+    }
+
+    // Subscribe to the logged-in user's private document in Firestore (RULE 1 Strict Path)
+    function subscribeToUserBackendData(uid) {
+      if (!db || !uid) return;
+      if (unsubscribeWorkspace) unsubscribeWorkspace();
+
+      const userDocRef = doc(db, 'artifacts', appId, 'users', uid, 'studyData', 'workspace');
+
+      unsubscribeWorkspace = onSnapshot(
+        userDocRef,
+        (snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.data();
+            if (data.profile) userProfile = { ...userProfile, ...data.profile };
+            if (data.gsatTargetDate) gsatTargetDate = data.gsatTargetDate;
+            if (data.astTargetDate) astTargetDate = data.astTargetDate;
+            if (data.stats) stats = data.stats;
+            if (Array.isArray(data.studyTasks)) studyTasks = data.studyTasks;
+            if (Array.isArray(data.journalLogs)) journalLogs = data.journalLogs;
+
+            // Refresh all UI sections with user's cloud data
+            renderUserProfileBanner();
+            updateExamDateTextUI();
+            updateExamCountdowns();
+            renderStatsUI();
+            renderStudyTasks();
+            renderJournalLogs();
+            updateSyncStatusUI('已從雲端後台同步最新資料');
+          } else {
+            // First time user: initialize their cloud backend document
+            saveUserDataToBackend();
+          }
+        },
+        (error) => {
+          console.error('Firestore snapshot error:', error);
+          updateSyncStatusUI('雲端連線異常，暫存於本機記憶體');
+        }
+      );
+    }
+
+    // Save current user's state to Firestore backend & localStorage
+    async function saveUserDataToBackend() {
+      saveToLocalStorage();
+      renderUserProfileBanner();
+      renderStatsUI();
+      renderStudyTasks();
+      renderJournalLogs();
+
+      if (!db || !currentUser) {
+        updateSyncStatusUI('已自動儲存進度');
+        return;
+      }
+      try {
+        updateSyncStatusUI('正在同步至雲端後台...');
+        const userDocRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'studyData', 'workspace');
+        await setDoc(userDocRef, {
+          profile: userProfile,
+          gsatTargetDate,
+          astTargetDate,
+          stats,
+          studyTasks,
+          journalLogs,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+        updateSyncStatusUI('已自動儲存至雲端後台');
+      } catch (err) {
+        console.error('Save to backend failed:', err);
+        updateSyncStatusUI('儲存失敗，請檢查網路連線');
+      }
+    }
+
+    function updateSyncStatusUI(message) {
+      const badge = document.getElementById('cloudSyncBadge');
+      const timeText = document.getElementById('lastSyncedTimeText');
+      if (badge) {
+        badge.className = 'w-2 h-2 rounded-full bg-emerald-500';
+      }
+      if (timeText) {
+        const nowStr = new Date().toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        timeText.innerHTML = `<i class="fa-solid fa-cloud-check mr-1"></i>${message} (${nowStr})`;
+      }
+    }
+
+    function updateAuthUI(isCloudReady = true) {
+      const navName = document.getElementById('navUserName');
+      const uidEl = document.getElementById('modalUserUid');
+      const statusTitle = document.getElementById('modalAuthStatusTitle');
+      const signInBtnText = document.getElementById('googleSignInBtnText');
+
+      if (!isCloudReady || !currentUser) {
+        navName.textContent = userProfile.displayName || '訪客模式';
+        if (uidEl) uidEl.textContent = '本機階段 (未連結雲端)';
+        return;
+      }
+
+      const isGoogleLinked = currentUser.providerData && currentUser.providerData.some(p => p.providerId === 'google.com');
+      const displayLabel = userProfile.displayName || currentUser.displayName || '自覺考生';
+      navName.textContent = displayLabel;
+      if (uidEl) uidEl.textContent = currentUser.uid;
+
+      if (isGoogleLinked) {
+        statusTitle.textContent = `✅ 已透過 Google 帳號登入 (${currentUser.email || displayLabel})`;
+        signInBtnText.textContent = '切換 Google 帳號';
+      } else if (userProfile.email) {
+        statusTitle.textContent = `☁️ 雲端專屬空間已綁定 (${userProfile.email})`;
+        signInBtnText.textContent = '連結 Google 認證';
+      } else {
+        statusTitle.textContent = '☁️ 專屬雲端空間已啟用 (可綁定個人檔案)';
+        signInBtnText.textContent = '使用 Google 帳號登入';
+      }
+    }
+
+    function renderUserProfileBanner() {
+      const name = userProfile.displayName || '自覺考生';
+      const school = userProfile.targetSchool || '設定你的第一志願目標';
+      const motto = userProfile.motto || '「每一次察覺與暫停，都是為了走得更遠！」';
+
+      document.getElementById('navUserName').textContent = name;
+      document.getElementById('bannerGreeting').textContent = `嗨，${name}！今天也一起隨時自覺 🎈`;
+      document.getElementById('bannerTargetTag').textContent = `🎯 目標志願：${school}`;
+      document.getElementById('bannerMotto').textContent = `${motto} （所有進度與日誌皆自動存放於你的專屬雲端後台）`;
+      document.getElementById('bannerAvatar').textContent = name.slice(0, 1);
+
+      // Sync modal inputs
+      const nameInput = document.getElementById('profileNameInput');
+      if (nameInput && document.activeElement !== nameInput) {
+        nameInput.value = userProfile.displayName || '';
+        document.getElementById('profileEmailInput').value = userProfile.email || '';
+        document.getElementById('profileSchoolInput').value = userProfile.targetSchool || '';
+        document.getElementById('profileMottoInput').value = userProfile.motto || '';
+      }
+    }
+
+    // Google Login Popup Handler with Graceful Fallback for Sandboxed Iframes
+    async function loginWithGoogleAccount() {
+      if (!auth) {
+        showToast('目前環境僅支援直接填寫下方個人檔案儲存！', 'ℹ️');
+        return;
+      }
+      try {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        if (result.user) {
+          userProfile.displayName = result.user.displayName || userProfile.displayName;
+          userProfile.email = result.user.email || userProfile.email;
+          await saveUserDataToBackend();
+          updateAuthUI();
+          showToast(`歡迎 ${userProfile.displayName}！已成功登入 Google 帳號並同步後台`, '🎉');
+        }
+      } catch (err) {
+        console.warn('Google popup restricted in iframe or cancelled:', err);
+        document.getElementById('profileEmailInput').focus();
+        showToast('預覽視窗限制彈出登入框，請直接在下方填寫 Google 信箱與姓名即可存入你的專屬雲端後台！', '☁️');
+      }
+    }
+
+    function openAccountModal() {
+      renderUserProfileBanner();
+      updateAuthUI(!!currentUser);
+      const modal = document.getElementById('accountModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      playChime('soft');
+    }
+
+    function closeAccountModal() {
+      const modal = document.getElementById('accountModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    async function saveUserProfileForm(e) {
+      e.preventDefault();
+      userProfile = {
+        displayName: document.getElementById('profileNameInput').value.trim() || '自覺考生',
+        email: document.getElementById('profileEmailInput').value.trim(),
+        targetSchool: document.getElementById('profileSchoolInput').value.trim() || '邁向理想第一志願',
+        motto: document.getElementById('profileMottoInput').value.trim() || '「每一次察覺與暫停，都是為了走得更遠！」'
+      };
+      await saveUserDataToBackend();
+      updateAuthUI(!!currentUser);
+      closeAccountModal();
+      playChime('complete');
+      showToast(`已將「${userProfile.displayName}」的專屬檔案存放至雲端後台！`, '☁️');
+    }
+
+    // Scenarios database for Step 1 -> Step 3 intelligent matching
+    const SCENARIO_DATA = {
+      hard_problem: {
+        title: '題目卡死解不出來',
+        speech: '「遇到難題卡住超正常的！這代表你的大腦正在接觸新的高分區，我們先暫停深呼吸，換個切入點！」',
+        oldThought: '「這題想了超過10分鐘還不會，我一定完蛋了，大考考出來怎麼辦...」',
+        newThought: '「現在卡住代表我抓到一個考前盲點！先做記號或看詳解反推關鍵字，考前弄懂一題就是多賺一題！」',
+        actions: [
+          '📌 在題號旁畫個星星，先跳過寫後面會寫的題目，保持答題手感',
+          '🔍 直接翻開詳解看「第一行破題關鍵」，蓋起來自己算完後面步驟',
+          '🗣️ 假裝要把這題題目講給旁邊的氣球聽（費曼學習法），找出哪個條件沒用到'
+        ]
+      },
+      distracted: {
+        title: '注意力渙散想滑手機',
+        speech: '「發現自己想分心了嗎？太棒了！這就是『1.察覺』的超能力！不責備自己，先暫停60秒再回來。」',
+        oldThought: '「我怎麼這麼沒定力一直想滑手機，今天讀書計畫又泡湯了...」',
+        newThought: '「大腦連續專注本來就會疲勞！能夠『察覺自己分心』就是進步，我只要再專注 10 分鐘就好。」',
+        actions: [
+          '📵 把手機放到視線看不見的抽屜或另一個房間，開啟 25 分鐘番茄鐘',
+          '✍️ 改用「動筆寫/畫心智圖」代替用眼睛乾看課本，啟動肌肉記憶',
+          '🎯 跟自己約定：「只讀完眼前這 2 頁就好」，降低啟動門檻'
+        ]
+      },
+      schedule_anxiety: {
+        title: '看著倒數天數焦慮恐慌',
+        speech: '「倒數計時不是用來嚇自己的，而是幫我們聚焦當下！每一天能握在手裡的只有『今天這一步』🎈」',
+        oldThought: '「距離考試只剩這些天，還有好多範圍沒複習完，根本來不及了...」',
+        newThought: '「沒有人能把所有書讀到100%才上考場！我只要每天抓準高頻考點，今天比昨天多會一個觀念就夠了。」',
+        actions: [
+          '📋 拿出一張便條紙，只寫下「今天之內能完成的 3 個最小任務」',
+          '📊 優先複習歷屆試題最常出現的核心章節，放棄鑽牛角尖偏題',
+          '🧘 做完 60 秒 Hold On 呼吸練習後，立刻開始做第一件最簡單的事'
+        ]
+      },
+      exam_frustration: {
+        title: '模考/練習錯太多受挫',
+        speech: '「拍拍你！練習卷跟模考錯題是我們最好的『免費健檢報告』，現在錯越多，正式大考就錯越少！」',
+        oldThought: '「錯這麼多題、分數這麼難看，我是不是不管怎麼努力都沒救了...」',
+        newThought: '「模考跟練習的分數不代表最終大考結果！每一道錯題都是幫我掃除考場地雷的貴人。」',
+        actions: [
+          '🛠️ 把錯題分成「粗心看錯」與「觀念不會」兩類，先搞懂 3 題觀念題就好',
+          '📒 將今天最有收穫的 1 題錯題寫進錯題本，標註下次避坑提醒',
+          '☕ 站起來喝杯水獎勵自己剛才認真對完答案的勇氣'
+        ]
+      },
+      low_energy: {
+        title: '身心疲憊沒電想睡',
+        speech: '「手機沒電要充電，大腦沒電當然也要休息呀！察覺疲勞並適度暫停，才是最高效的備考策略！」',
+        oldThought: '「別人都在熬夜苦讀，我現在想睡覺是不是太偷懶了，硬撐也要看下去...」',
+        newThought: '「疲勞硬撐讀 2 小時的效果，還不如精神飽滿讀 30 分鐘！休息是為了讓記憶固化。」',
+        actions: [
+          '😴 設定 15～20 分鐘鬧鐘趴下小睡充電，起來後用冷水洗臉',
+          '🚶 離開座位做 3 分鐘拉筋伸展或到窗邊深呼吸新鮮空氣',
+          '🔄 把現在的燒腦計算科，換成輕鬆的背單字或整理筆記'
+        ]
+      },
+      perfectionism: {
+        title: '完美主義遲遲不敢開始',
+        speech: '「別等『完美狀態』才翻開書！先求有、再求好，就算只寫 5 分鐘也是超棒的破冰行動！」',
+        oldThought: '「現在時間零碎、心情還沒準備好，等整點或明天再開始完整讀好了...」',
+        newThought: '「『開始行動』本身就會帶來動力！粗糙的開始遠勝過完美的拖延。」',
+        actions: [
+          '⏱️ 啟動「5分鐘破冰法則」：告訴自己只讀 5 分鐘，5 分鐘後想停就可以停',
+          '📖 直接翻開課本或題本的第一頁，先看第一題或第一段標題',
+          '🎈 把龐大的複習計畫砍半，今天先完成最容易的 30% 即可'
+        ]
+      }
+    };
+
+    const BALLOON_QUOTES = [
+      '🎈 「卡關不是停滯，而是大腦正在幫你升級思維系統！」',
+      '💡 「1.察覺狀態 ➔ 2.暫停呼吸 ➔ 3.調整方向，你隨時都有重新開始的力量！」',
+      '🌟 「學測與分科測驗比的不只是知識量，更是誰能在卡關時最快穩住心態。」',
+      '⏳ 「當你覺得讀不下時，停下來深呼吸 60 秒，這 60 秒會幫你省下 2 小時的瞎忙。」',
+      '🛠️ 「這題不會沒關係，弄懂詳解的第一步，你就比五分鐘前的自己更強了！」',
+      '🌱 「不必跟別人的進度比較，照著自己的配速穩穩走，終點一定會到！」'
+    ];
+
+    let currentScenarioKey = 'hard_problem';
+    let selectedActionText = '';
+
+    /*************************************************************
+     * 2. WEB AUDIO SYNTHESIZER (No external audio files needed)
+     *************************************************************/
+    let audioCtx = null;
+    function playChime(type = 'soft') {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'soft') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(528, now);
+          osc.frequency.exponentialRampToValueAtTime(660, now + 0.18);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.26);
+        } else if (type === 'complete') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.12); // E5
+          osc.frequency.setValueAtTime(783.99, now + 0.24); // G5
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+          osc.start(now);
+          osc.stop(now + 0.56);
+        }
+      } catch (e) {
+        // Ignore audio context restrictions if not interacted yet
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('soundIcon');
+      icon.className = soundEnabled ? 'fa-solid fa-volume-high text-sm' : 'fa-solid fa-volume-xmark text-sm text-rose-500';
+      showToast(soundEnabled ? '已開啟溫馨音效提示' : '已切換為靜音模式', soundEnabled ? '🔊' : '🔇');
+    }
+
+    /*************************************************************
+     * 3. REAL-TIME EXAM COUNTDOWN (學測 & 分科測驗)
+     *************************************************************/
+    function updateExamCountdowns() {
+      const now = new Date();
+      // Format current date display
+      const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      document.getElementById('currentDateDisplay').textContent = '現在時間：' + now.toLocaleDateString('zh-TW', dateOptions);
+
+      // Update GSAT (學測)
+      updateSingleCountdown(new Date(gsatTargetDate), {
+        daysEl: 'gsatDays',
+        hoursEl: 'gsatHours',
+        minsEl: 'gsatMins',
+        secsEl: 'gsatSecs',
+        badgeEl: 'gsatStatusBadge'
+      });
+
+      // Update AST (分科測驗)
+      updateSingleCountdown(new Date(astTargetDate), {
+        daysEl: 'astDays',
+        hoursEl: 'astHours',
+        minsEl: 'astMins',
+        secsEl: 'astSecs',
+        badgeEl: 'astStatusBadge'
+      });
+    }
+
+    function updateSingleCountdown(targetDate, els) {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById(els.daysEl).textContent = '00';
+        document.getElementById(els.hoursEl).textContent = '00';
+        document.getElementById(els.minsEl).textContent = '00';
+        document.getElementById(els.secsEl).textContent = '00';
+        document.getElementById(els.badgeEl).textContent = '考試進行中 / 已圓滿結束';
+        return;
+      }
+
+      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins  = Math.floor((diff / 1000 / 60) % 60);
+      const secs  = Math.floor((diff / 1000) % 60);
+
+      document.getElementById(els.daysEl).textContent  = String(days).padStart(2, '0');
+      document.getElementById(els.hoursEl).textContent = String(hours).padStart(2, '0');
+      document.getElementById(els.minsEl).textContent  = String(mins).padStart(2, '0');
+      document.getElementById(els.secsEl).textContent  = String(secs).padStart(2, '0');
+
+      const badge = document.getElementById(els.badgeEl);
+      if (days <= 30) {
+        badge.textContent = `最後 ${days} 天衝刺！穩住心態`;
+      } else if (days <= 100) {
+        badge.textContent = `破百倒數 ${days} 天・穩紮穩打`;
+      } else {
+        badge.textContent = `距離開考 ${days} 天・長線蓄力`;
+      }
+    }
+
+    function openScheduleModal(type) {
+      const modal = document.getElementById('scheduleModal');
+      const title = document.getElementById('scheduleModalTitle');
+      const body  = document.getElementById('scheduleModalBody');
+
+      if (type === 'gsat') {
+        title.textContent = '🎯 116學年度 大學學測重要日程表';
+        body.innerHTML = `
+          <div class="p-3 rounded-2xl bg-sky-50 border border-sky-200 flex justify-between"><span>📌 報名期間</span><span>2026/10/27 (二) ~ 11/10 (二)</span></div>
+          <div class="p-3 rounded-2xl bg-white border border-brand-brown/15 flex justify-between"><span>📋 報名結果檢核</span><span>2026/11/13 (五) ~ 11/19 (四)</span></div>
+          <div class="p-3 rounded-2xl bg-white border border-brand-brown/15 flex justify-between"><span>🏫 公布試場分配表</span><span>2027/01/05 (二)</span></div>
+          <div class="p-3 rounded-2xl bg-amber-100 border-2 border-brand-brown flex justify-between font-black"><span>🔥 學測考試日期</span><span>2027/01/22 (五) ~ 01/24 (日)</span></div>
+          <div class="p-3 rounded-2xl bg-white border border-brand-brown/15 flex justify-between"><span>📊 公布成績與五標</span><span>2027/02/25 (四)</span></div>
+        `;
+      } else {
+        title.textContent = '🚀 116學年度 大學分科測驗重要日程表';
+        body.innerHTML = `
+          <div class="p-3 rounded-2xl bg-pink-50 border border-pink-200 flex justify-between"><span>📌 分科報名期間</span><span>2027/06/03 (四) ~ 06/15 (二)</span></div>
+          <div class="p-3 rounded-2xl bg-white border border-brand-brown/15 flex justify-between"><span>📋 報名結果檢核</span><span>2027/06/18 (五) ~ 06/21 (一)</span></div>
+          <div class="p-3 rounded-2xl bg-white border border-brand-brown/15 flex justify-between"><span>🏫 開放應考資訊與考場查詢</span><span>2027/07/06 (二)</span></div>
+          <div class="p-3 rounded-2xl bg-amber-100 border-2 border-brand-brown flex justify-between font-black"><span>🔥 分科測驗考試日期</span><span>2027/07/10 (六) ~ 07/11 (日)</span></div>
+          <div class="p-3 rounded-2xl bg-white border border-brand-brown/15 flex justify-between"><span>📊 公布分科成績</span><span>2027/07/29 (四)</span></div>
+        `;
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      playChime('soft');
+    }
+
+    function closeScheduleModal() {
+      const modal = document.getElementById('scheduleModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function openCustomDateModal() {
+      document.getElementById('customGsatInput').value = gsatTargetDate.slice(0, 16);
+      document.getElementById('customAstInput').value  = astTargetDate.slice(0, 16);
+      const modal = document.getElementById('customDateModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCustomDateModal() {
+      const modal = document.getElementById('customDateModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveCustomExamDates() {
+      const gsatVal = document.getElementById('customGsatInput').value;
+      const astVal  = document.getElementById('customAstInput').value;
+      if (gsatVal) gsatTargetDate = gsatVal;
+      if (astVal)  astTargetDate  = astVal;
+
+      updateExamDateTextUI();
+      updateExamCountdowns();
+      saveUserDataToBackend();
+      closeCustomDateModal();
+      showToast('已更新大考倒數目標日期並同步至雲端後台！', '📅');
+    }
+
+    function resetDefaultExamDates() {
+      gsatTargetDate = DEFAULT_GSAT_DATE;
+      astTargetDate  = DEFAULT_AST_DATE;
+      updateExamDateTextUI();
+      updateExamCountdowns();
+      saveUserDataToBackend();
+      closeCustomDateModal();
+      showToast('已還原為 116 學年度學測與分科測驗預設日期！', '✨');
+    }
+
+    function updateExamDateTextUI() {
+      if (gsatTargetDate === DEFAULT_GSAT_DATE) {
+        document.getElementById('gsatTargetText').textContent = '2027年1月22日 (五) 08:30';
+      } else {
+        document.getElementById('gsatTargetText').textContent = new Date(gsatTargetDate).toLocaleString('zh-TW', { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' });
+      }
+      if (astTargetDate === DEFAULT_AST_DATE) {
+        document.getElementById('astTargetText').textContent = '2027年7月10日 (六) 08:40';
+      } else {
+        document.getElementById('astTargetText').textContent = new Date(astTargetDate).toLocaleString('zh-TW', { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' });
+      }
+    }
+
+    /*************************************************************
+     * 4. THREE-STEP SELF-AWARENESS WORKFLOW (1.察覺 -> 2.暫停 -> 3.調整)
+     *************************************************************/
+    function selectStep(stepNum) {
+      playChime('soft');
+      [1, 2, 3].forEach(n => {
+        const panel = document.getElementById(`panel-step-${n}`);
+        const tab   = document.getElementById(`tab-btn-${n}`);
+        const badge = document.getElementById(`badge-step-${n}`);
+
+        if (n === stepNum) {
+          panel.classList.remove('hidden');
+          tab.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition bg-brand-yellow text-brand-brown shadow-sm';
+          badge.classList.remove('border-brand-brown/30');
+          badge.classList.add('border-brand-brown', 'shadow-[0_8px_0_#5C3824]', 'scale-105');
+        } else {
+          panel.classList.add('hidden');
+          tab.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition text-brand-brownLight hover:text-brand-brown';
+          badge.classList.add('border-brand-brown/30');
+          badge.classList.remove('shadow-[0_8px_0_#5C3824]', 'scale-105');
+        }
+      });
+
+      // Update mascot speech bubble based on step
+      const speechEl = document.getElementById('mascotSpeechText');
+      if (stepNum === 1) {
+        speechEl.textContent = '「第一步【1. 察覺】💡：敏銳察覺自我狀態！看看現在是哪裡卡住了？誠實面對自己最棒！」';
+      } else if (stepNum === 2) {
+        speechEl.textContent = '「第二步【2. 暫停】⏸️：卡關時停下腳步！來，跟著我的氣球一起深呼吸，讓大腦降溫一下～」';
+      } else if (stepNum === 3) {
+        speechEl.textContent = '「第三步【3. 調整】🛠️：靈活調整思維方向！換個新角度，挑一個 5 分鐘就能做到的小行動吧！」';
+        renderStep3Content();
+      }
+    }
+
+    function pickScenario(key) {
+      currentScenarioKey = key;
+      playChime('soft');
+      document.querySelectorAll('.scenario-btn').forEach(btn => {
+        if (btn.dataset.scenario === key) {
+          btn.className = 'scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown bg-amber-50 shadow-[0_3px_0_#5C3824] transition flex items-start gap-3';
+        } else {
+          btn.className = 'scenario-btn text-left p-3.5 rounded-2xl border-2 border-brand-brown/20 bg-white hover:border-brand-brown transition flex items-start gap-3';
+        }
+      });
+
+      const info = SCENARIO_DATA[key];
+      document.getElementById('awarenessSummaryText').textContent = `💡 察覺完成！你敏銳察覺到自己正處於「${info.title}」，看見狀態就是改變的開始。`;
+      document.getElementById('mascotSpeechText').textContent = info.speech;
+      renderStep3Content();
+    }
+
+    function updateEnergyDisplay(val) {
+      const label = document.getElementById('energyValueDisplay');
+      let status = '電力充足 ⚡';
+      if (val <= 30) status = '急需充電 🪫';
+      else if (val <= 65) status = '尚可維持 🔋';
+      label.textContent = `${val}% ${status}`;
+    }
+
+    function toggleSignal(btn) {
+      btn.classList.toggle('bg-amber-200');
+      btn.classList.toggle('border-brand-brown');
+      btn.classList.toggle('bg-white');
+    }
+
+    function completeStep1AndGoStep2() {
+      stats.awareness += 1;
+      saveAndRenderStats();
+      selectStep(2);
+      scrollToSection('three-steps-section');
+      showToast('已完成「1. 察覺」！現在讓自己暫停喘口氣 ⏳', '💡');
+    }
+
+    /*************************************************************
+     * 5. STEP 2: HOLD ON BREATHING & HOURGLASS PAUSE TIMER
+     *************************************************************/
+    let pauseSecondsTotal = 60;
+    let pauseSecondsLeft  = 60;
+    let pauseInterval     = null;
+    let breathPhaseTimer  = null;
+
+    function setPauseDuration(secs) {
+      pauseSecondsTotal = secs;
+      resetPauseTimer();
+      document.querySelectorAll('.pause-dur-btn').forEach((btn, idx) => {
+        if ((secs === 60 && idx === 0) || (secs === 180 && idx === 1)) {
+          btn.className = 'pause-dur-btn px-3 py-1 rounded-full text-xs font-extrabold border-2 border-brand-brown bg-rose-200 text-brand-brown';
+        } else {
+          btn.className = 'pause-dur-btn px-3 py-1 rounded-full text-xs font-extrabold border-2 border-brand-brown/25 bg-white text-brand-brown';
+        }
+      });
+    }
+
+    function formatMMSS(secs) {
+      const m = String(Math.floor(secs / 60)).padStart(2, '0');
+      const s = String(secs % 60).padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function togglePauseTimer() {
+      if (pauseInterval) {
+        // Pause it
+        clearInterval(pauseInterval);
+        clearInterval(breathPhaseTimer);
+        pauseInterval = null;
+        document.getElementById('pausePlayIcon').className = 'fa-solid fa-play';
+        document.getElementById('pauseStartBtnText').textContent = '繼續呼吸暫停';
+        document.getElementById('breathInstruction').textContent = '已暫停計時';
+      } else {
+        // Start it
+        playChime('soft');
+        document.getElementById('pausePlayIcon').className = 'fa-solid fa-pause';
+        document.getElementById('pauseStartBtnText').textContent = '暫停沙漏';
+        runBreathingCycle();
+        breathPhaseTimer = setInterval(runBreathingCycle, 8000);
+
+        pauseInterval = setInterval(() => {
+          pauseSecondsLeft--;
+          document.getElementById('pauseTimerDisplay').textContent = formatMMSS(pauseSecondsLeft);
+          if (pauseSecondsLeft <= 0) {
+            clearInterval(pauseInterval);
+            clearInterval(breathPhaseTimer);
+            pauseInterval = null;
+            playChime('complete');
+            stats.pause += 1;
+            saveAndRenderStats();
+            document.getElementById('breathInstruction').textContent = '🎉 暫停完成！大腦已重新開機';
+            document.getElementById('pauseStartBtnText').textContent = '再來一次';
+            document.getElementById('pausePlayIcon').className = 'fa-solid fa-rotate-right';
+            pauseSecondsLeft = pauseSecondsTotal;
+            showToast('Hold On 沙漏暫停完成！準備進入「3. 調整」', '⏳');
+          }
+        }, 1000);
+      }
+    }
+
+    function runBreathingCycle() {
+      const outer = document.getElementById('breathOuterRing');
+      const inner = document.getElementById('breathInnerCircle');
+      const inst  = document.getElementById('breathInstruction');
+      const emoji = document.getElementById('pauseVisualEmoji');
+
+      // Inhale (4s)
+      inst.textContent = '🌬️ 鼻子深深吸氣 4 秒...';
+      emoji.textContent = '🎈';
+      outer.style.transform = 'scale(1.22)';
+      inner.style.transform = 'scale(1.08)';
+
+      // Exhale (4s)
+      setTimeout(() => {
+        if (!pauseInterval) return;
+        inst.textContent = '😌 嘴巴慢慢吐氣放鬆 4 秒...';
+        emoji.textContent = '⏳';
+        outer.style.transform = 'scale(0.85)';
+        inner.style.transform = 'scale(0.95)';
+      }, 4000);
+    }
+
+    function resetPauseTimer() {
+      clearInterval(pauseInterval);
+      clearInterval(breathPhaseTimer);
+      pauseInterval = null;
+      pauseSecondsLeft = pauseSecondsTotal;
+      document.getElementById('pauseTimerDisplay').textContent = formatMMSS(pauseSecondsLeft);
+      document.getElementById('breathInstruction').textContent = '點擊下方開始暫停';
+      document.getElementById('pauseStartBtnText').textContent = '開始 Hold On 呼吸暫停';
+      document.getElementById('pausePlayIcon').className = 'fa-solid fa-play';
+      document.getElementById('breathOuterRing').style.transform = 'scale(0.9)';
+      document.getElementById('breathInnerCircle').style.transform = 'scale(1)';
+    }
+
+    function completeStep2AndGoStep3() {
+      resetPauseTimer();
+      stats.pause += 1;
+      saveAndRenderStats();
+      selectStep(3);
+      scrollToSection('three-steps-section');
+      showToast('做得很棒！現在我們來「3. 靈活調整思維方向」🛠️', '⏸️');
+    }
+
+    /*************************************************************
+     * 6. STEP 3: COGNITIVE REFRAMING & ACTION PLAN
+     *************************************************************/
+    function renderStep3Content() {
+      const data = SCENARIO_DATA[currentScenarioKey];
+      document.getElementById('reframeOldThought').textContent = data.oldThought;
+      document.getElementById('reframeNewThought').textContent = data.newThought;
+
+      const listEl = document.getElementById('actionSuggestionList');
+      selectedActionText = data.actions[0];
+      listEl.innerHTML = data.actions.map((act, idx) => `
+        <button type="button" onclick="selectActionItem(this, '${act.replace(/'/g, "\\'")}')" class="action-item-btn w-full text-left p-3 rounded-xl border-2 ${idx === 0 ? 'border-brand-brown bg-emerald-50 shadow-[0_2px_0_#5C3824]' : 'border-brand-brown/20 bg-white'} text-xs sm:text-sm font-bold text-brand-brown transition flex items-center justify-between gap-2">
+          <span>${act}</span>
+          <i class="fa-solid fa-circle-check ${idx === 0 ? 'text-emerald-600' : 'text-gray-300'}"></i>
+        </button>
+      `).join('');
+    }
+
+    function selectActionItem(btnEl, text) {
+      selectedActionText = text;
+      document.querySelectorAll('.action-item-btn').forEach(b => {
+        b.className = 'action-item-btn w-full text-left p-3 rounded-xl border-2 border-brand-brown/20 bg-white text-xs sm:text-sm font-bold text-brand-brown transition flex items-center justify-between gap-2';
+        b.querySelector('i').className = 'fa-solid fa-circle-check text-gray-300';
+      });
+      btnEl.className = 'action-item-btn w-full text-left p-3 rounded-xl border-2 border-brand-brown bg-emerald-50 shadow-[0_2px_0_#5C3824] text-xs sm:text-sm font-bold text-brand-brown transition flex items-center justify-between gap-2';
+      btnEl.querySelector('i').className = 'fa-solid fa-circle-check text-emerald-600';
+    }
+
+    function shuffleReframeCard() {
+      const keys = Object.keys(SCENARIO_DATA);
+      const nextIndex = (keys.indexOf(currentScenarioKey) + 1) % keys.length;
+      currentScenarioKey = keys[nextIndex];
+      renderStep3Content();
+      playChime('soft');
+      showToast(`已切換至「${SCENARIO_DATA[currentScenarioKey].title}」的轉念處方！`, '🛠️');
+    }
+
+    function saveAdjustmentToJournal() {
+      const customNote = document.getElementById('customNoteInput').value.trim();
+      const finalAction = customNote || selectedActionText;
+      const scenarioInfo = SCENARIO_DATA[currentScenarioKey];
+      const energyVal = document.getElementById('energySlider').value;
+
+      const newEntry = {
+        id: Date.now(),
+        time: new Date().toLocaleString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        scenario: scenarioInfo.title,
+        energy: energyVal,
+        reframe: scenarioInfo.newThought,
+        action: finalAction
+      };
+
+      journalLogs.unshift(newEntry);
+      journalLogs = journalLogs.slice(0, 30);
+
+      stats.adjust += 1;
+      document.getElementById('customNoteInput').value = '';
+      saveUserDataToBackend();
+      playChime('complete');
+      showToast('太棒了！已完成卡關三步調整並存入你的雲端破關日誌 🎉', '🎈');
+      scrollToSection('journal-section');
+    }
+
+    /*************************************************************
+     * 7. POMODORO FOCUS TIMER & STUDY TO-DO LIST
+     *************************************************************/
+    let pomoTotalSecs = 25 * 60;
+    let pomoLeftSecs  = 25 * 60;
+    let pomoInterval  = null;
+
+    function setPomodoroMode(mins, label) {
+      clearInterval(pomoInterval);
+      pomoInterval = null;
+      pomoTotalSecs = mins * 60;
+      pomoLeftSecs  = pomoTotalSecs;
+      document.getElementById('pomoModeLabel').textContent = '🎯 ' + label;
+      document.getElementById('pomoTimeDisplay').textContent = formatMMSS(pomoLeftSecs);
+      document.getElementById('pomoStartText').textContent = '開始專注';
+      document.getElementById('pomoPlayIcon').className = 'fa-solid fa-play';
+      playChime('soft');
+    }
+
+    function togglePomodoro() {
+      if (pomoInterval) {
+        clearInterval(pomoInterval);
+        pomoInterval = null;
+        document.getElementById('pomoStartText').textContent = '繼續專注';
+        document.getElementById('pomoPlayIcon').className = 'fa-solid fa-play';
+      } else {
+        playChime('soft');
+        document.getElementById('pomoStartText').textContent = '暫停番茄鐘';
+        document.getElementById('pomoPlayIcon').className = 'fa-solid fa-pause';
+        pomoInterval = setInterval(() => {
+          pomoLeftSecs--;
+          document.getElementById('pomoTimeDisplay').textContent = formatMMSS(pomoLeftSecs);
+          if (pomoLeftSecs <= 0) {
+            clearInterval(pomoInterval);
+            pomoInterval = null;
+            playChime('complete');
+            pomoLeftSecs = pomoTotalSecs;
+            document.getElementById('pomoTimeDisplay').textContent = formatMMSS(pomoLeftSecs);
+            document.getElementById('pomoStartText').textContent = '開始專注';
+            document.getElementById('pomoPlayIcon').className = 'fa-solid fa-play';
+            showToast('🍅 恭喜完成一顆專注番茄！站起來喝口水休息一下吧！', '🎉');
+          }
+        }, 1000);
+      }
+    }
+
+    function resetPomodoro() {
+      clearInterval(pomoInterval);
+      pomoInterval = null;
+      pomoLeftSecs = pomoTotalSecs;
+      document.getElementById('pomoTimeDisplay').textContent = formatMMSS(pomoLeftSecs);
+      document.getElementById('pomoStartText').textContent = '開始專注';
+      document.getElementById('pomoPlayIcon').className = 'fa-solid fa-play';
+    }
+
+    function renderStudyTasks() {
+      const tasks = studyTasks;
+      const container = document.getElementById('studyTaskList');
+      const doneCount = tasks.filter(t => t.done).length;
+      document.getElementById('taskCounterBadge').textContent = `已完成 ${doneCount}/${tasks.length}`;
+
+      if (tasks.length === 0) {
+        container.innerHTML = `<div class="text-center py-6 text-xs font-bold text-brand-brownLight">目前沒有待辦任務，上方新增一個小目標吧！</div>`;
+        return;
+      }
+
+      container.innerHTML = tasks.map(t => `
+        <div class="flex items-center justify-between gap-2 p-3 rounded-2xl border-2 ${t.done ? 'bg-gray-50/80 border-gray-200 opacity-70' : 'bg-white border-brand-brown/20 hover:border-brand-brown'} transition">
+          <label class="flex items-center gap-2.5 cursor-pointer flex-grow">
+            <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleStudyTask(${t.id})" class="w-4 h-4 accent-emerald-600 rounded cursor-pointer" />
+            <span class="text-xs sm:text-sm font-bold ${t.done ? 'line-through text-gray-400' : 'text-brand-brown'}">${t.text}</span>
+          </label>
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="focusOnTask('${t.text.replace(/'/g, "\\'")}')" class="px-2 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-brand-brown text-[11px] font-extrabold" title="設為番茄鐘當前任務">
+              專注此項
+            </button>
+            <button onclick="deleteStudyTask(${t.id})" class="w-6 h-6 rounded-lg hover:bg-rose-100 text-gray-400 hover:text-rose-600 text-xs">
+              ✕
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addStudyTask(e) {
+      e.preventDefault();
+      const input = document.getElementById('newTaskInput');
+      const text = input.value.trim();
+      if (!text) return;
+      studyTasks.unshift({ id: Date.now(), text, done: false });
+      input.value = '';
+      saveUserDataToBackend();
+      playChime('soft');
+    }
+
+    function toggleStudyTask(id) {
+      studyTasks = studyTasks.map(t => t.id === id ? { ...t, done: !t.done } : t);
+      saveUserDataToBackend();
+      playChime('soft');
+    }
+
+    function deleteStudyTask(id) {
+      studyTasks = studyTasks.filter(t => t.id !== id);
+      saveUserDataToBackend();
+    }
+
+    function focusOnTask(taskName) {
+      document.getElementById('pomoCurrentTaskLabel').innerHTML = `當前專注科目：<span class="text-brand-brown font-black">${taskName}</span>`;
+      showToast(`已鎖定專注目標：${taskName}`, '🎯');
+    }
+
+    /*************************************************************
+     * 8. SELF-AWARENESS JOURNAL & HELPERS
+     *************************************************************/
+    function renderJournalLogs() {
+      const logs = journalLogs;
+      const container = document.getElementById('journalLogContainer');
+
+      if (logs.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full bg-white/70 rounded-2xl p-6 text-center border-2 border-dashed border-brand-brown/25">
+            <div class="text-3xl mb-1">🎈</div>
+            <div class="text-sm font-black text-brand-brown">還沒有自覺破關紀錄喔！</div>
+            <div class="text-xs font-bold text-brand-brownLight mt-1">當你讀書卡關時，使用上方「1.察覺 ➔ 2.暫停 ➔ 3.調整」並點擊儲存，就會自動同步保存在你的專屬雲端後台！</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = logs.map(item => `
+        <div class="bg-white/90 rounded-2xl p-4 border-2 border-brand-brown/25 shadow-sm flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center justify-between text-[11px] font-extrabold text-brand-brownLight mb-1.5">
+              <span class="px-2 py-0.5 rounded-full bg-amber-100 text-brand-brown">💡 ${item.scenario}</span>
+              <span>${item.time}・電量 ${item.energy}%</span>
+            </div>
+            <p class="text-xs font-bold text-emerald-800 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
+              🔄 轉念：${item.reframe}
+            </p>
+          </div>
+          <div class="pt-2 border-t border-brand-brown/10 text-xs font-black text-brand-brown flex items-start justify-between gap-1.5">
+            <div class="flex items-start gap-1.5">
+              <span>🛠️ 行動：</span>
+              <span>${item.action}</span>
+            </div>
+            <button onclick="deleteJournalLog(${item.id})" class="text-gray-400 hover:text-rose-600 text-xs shrink-0" title="刪除此筆紀錄">✕</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function deleteJournalLog(id) {
+      journalLogs = journalLogs.filter(item => item.id !== id);
+      saveUserDataToBackend();
+      showToast('已刪除此筆破關日誌並同步至雲端', '🗑️');
+    }
+
+    function copyJournalSummary() {
+      const logs = journalLogs;
+      if (logs.length === 0) {
+        showToast('目前還沒有日誌可以複製喔！', '📋');
+        return;
+      }
+      const text = logs.map((l, i) => `${i + 1}. [${l.time}] 察覺：${l.scenario} ➔ 行動：${l.action}`).join('\n');
+      const textarea = document.createElement('textarea');
+      textarea.value = `【${userProfile.displayName} 的隨時自覺：卡關三步調整法 破關日誌】\n🎯 目標志願：${userProfile.targetSchool}\n${text}`;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showToast('已複製破關日誌到剪貼簿！', '📋');
+    }
+
+    function clearJournalLogs() {
+      journalLogs = [];
+      saveUserDataToBackend();
+      showToast('已清空破關日誌紀錄並同步雲端', '🧹');
+    }
+
+    function renderStatsUI() {
+      document.getElementById('statAwarenessCount').textContent = stats.awareness;
+      document.getElementById('statPauseCount').textContent     = stats.pause;
+      document.getElementById('statAdjustCount').textContent    = stats.adjust;
+    }
+
+    function saveAndRenderStats() {
+      saveUserDataToBackend();
+    }
+
+    function popBalloonQuote() {
+      playChime('soft');
+      const quote = BALLOON_QUOTES[Math.floor(Math.random() * BALLOON_QUOTES.length)];
+      document.getElementById('mascotSpeechText').textContent = quote;
+      showToast(quote, '🎈');
+    }
+
+    function triggerEmergencyHoldOn() {
+      // If Pomodoro is running, pause it automatically
+      if (pomoInterval) togglePomodoro();
+      selectStep(1);
+      scrollToSection('three-steps-section');
+      showToast('已為你按下暫停鍵！先從「1. 察覺自我狀態」開始吧 🎈', '⏸️');
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    let toastTimeout = null;
+    function showToast(msg, emoji = '🎈') {
+      const box = document.getElementById('toastBox');
+      document.getElementById('toastMessage').textContent = msg;
+      document.getElementById('toastEmoji').textContent   = emoji;
+      box.classList.remove('translate-y-24', 'opacity-0');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        box.classList.add('translate-y-24', 'opacity-0');
+      }, 3400);
+    }
+
+    // Expose functions to global window scope for inline onclick handlers
+    Object.assign(window, {
+      toggleSound,
+      openScheduleModal,
+      closeScheduleModal,
+      openCustomDateModal,
+      closeCustomDateModal,
+      saveCustomExamDates,
+      resetDefaultExamDates,
+      selectStep,
+      pickScenario,
+      updateEnergyDisplay,
+      toggleSignal,
+      completeStep1AndGoStep2,
+      setPauseDuration,
+      togglePauseTimer,
+      resetPauseTimer,
+      completeStep2AndGoStep3,
+      selectActionItem,
+      shuffleReframeCard,
+      saveAdjustmentToJournal,
+      setPomodoroMode,
+      togglePomodoro,
+      resetPomodoro,
+      addStudyTask,
+      toggleStudyTask,
+      deleteStudyTask,
+      focusOnTask,
+      copyJournalSummary,
+      clearJournalLogs,
+      deleteJournalLog,
+      popBalloonQuote,
+      triggerEmergencyHoldOn,
+      scrollToSection,
+      openAccountModal,
+      closeAccountModal,
+      loginWithGoogleAccount,
+      saveUserProfileForm
+    });
+
+    /*************************************************************
+     * 9. INITIALIZE ON WINDOW LOAD
+     *************************************************************/
+    window.onload = function () {
+      updateExamCountdowns();
+      setInterval(updateExamCountdowns, 1000);
+      renderUserProfileBanner();
+      renderStatsUI();
+      renderStep3Content();
+      renderStudyTasks();
+      renderJournalLogs();
+      initCloudBackend();
+    };
+  </script>
+
+</body></html>
